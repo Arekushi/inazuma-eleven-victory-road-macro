@@ -1,0 +1,7 @@
+[CLI.CHRONICLE_MATCH]
+rule = ':new_moon: [b]Executando o macro...[/]'
+failed = ':x: A execução do macro [white on red] falhou... [/]'
+
+[CLI.PIPELINE]
+timeout = '[b][<loop_count>/<loop_length>][/] :alarm_clock: Timeout em: [b][<step_name>][/]'
+enter_step = '[b][<loop_count>/<loop_length>][/] :point_right: Entrando no passo: [b][<step_name>][/]'

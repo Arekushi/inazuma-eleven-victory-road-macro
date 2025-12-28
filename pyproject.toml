@@ -1,0 +1,25 @@
+[project]
+name = "inazuma-eleven-victory-road-macro"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Alexandre Lima", email = "alex.ferreiradelima@proton.me"}
+]
+readme = "README.md"
+requires-python = ">=3.10,<3.15"
+dependencies = [
+    "dynaconf (>=3.2.12,<4.0.0)",
+    "pyautogui (>=0.9.54,<0.10.0)",
+    "typer (>=0.21.0,<0.22.0)",
+    "auto-py-to-exe (>=2.48.1,<3.0.0)",
+    "pygetwindow (>=0.0.9,<0.0.10)",
+    "pywinauto (>=0.6.9,<0.7.0)",
+    "opencv-python (>=4.12.0.88,<5.0.0.0)",
+    "pydantic (>=2.12.5,<3.0.0)",
+    "typing-extensions (>=4.15.0,<5.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

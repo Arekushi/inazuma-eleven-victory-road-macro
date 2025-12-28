@@ -1,0 +1,81 @@
+{
+ "version": "auto-py-to-exe-configuration_v1",
+ "pyinstallerOptions": [
+  {
+   "optionDest": "noconfirm",
+   "value": true
+  },
+  {
+   "optionDest": "filenames",
+   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/main.py"
+  },
+  {
+   "optionDest": "onefile",
+   "value": false
+  },
+  {
+   "optionDest": "console",
+   "value": true
+  },
+  {
+   "optionDest": "clean_build",
+   "value": false
+  },
+  {
+   "optionDest": "strip",
+   "value": false
+  },
+  {
+   "optionDest": "noupx",
+   "value": false
+  },
+  {
+   "optionDest": "disable_windowed_traceback",
+   "value": false
+  },
+  {
+   "optionDest": "uac_admin",
+   "value": false
+  },
+  {
+   "optionDest": "uac_uiaccess",
+   "value": false
+  },
+  {
+   "optionDest": "argv_emulation",
+   "value": false
+  },
+  {
+   "optionDest": "bootloader_ignore_signals",
+   "value": false
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/assets/pt-br/match/end-first-half-validator.png;assets/pt-br/match/."
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/assets/pt-br/match/end-second-half-validator.png;assets/pt-br/match/."
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/assets/pt-br/match/start-validator.png;assets/pt-br/match/."
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/config/toml/cli.toml;config/toml/."
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/config/toml/settings.toml;config/toml/."
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/config/toml/typer.toml;config/toml/."
+  }
+ ],
+ "nonPyinstallerOptions": {
+  "increaseRecursionLimit": true,
+  "manualArguments": ""
+ }
+}

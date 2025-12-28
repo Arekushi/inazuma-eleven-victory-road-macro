@@ -1,0 +1,75 @@
+from enum import Enum
+
+
+class Key(str, Enum):
+    # Letras
+    A = 'a'
+    B = 'b'
+    C = 'c'
+    D = 'd'
+    E = 'e'
+    F = 'f'
+    G = 'g'
+    H = 'h'
+    I = 'i'
+    J = 'j'
+    K = 'k'
+    L = 'l'
+    M = 'm'
+    N = 'n'
+    O = 'o'
+    P = 'p'
+    Q = 'q'
+    R = 'r'
+    S = 's'
+    T = 't'
+    U = 'u'
+    V = 'v'
+    W = 'w'
+    X = 'x'
+    Y = 'y'
+    Z = 'z'
+
+    # Números
+    ZERO = '0'
+    ONE = '1'
+    TWO = '2'
+    THREE = '3'
+    FOUR = '4'
+    FIVE = '5'
+    SIX = '6'
+    SEVEN = '7'
+    EIGHT = '8'
+    NINE = '9'
+
+    # Especiais
+    ENTER = 'enter'
+    ESC = 'esc'
+    SPACE = 'space'
+    TAB = 'tab'
+    BACKSPACE = 'backspace'
+
+    # Modificadores
+    SHIFT = 'shift'
+    CTRL = 'ctrl'
+    ALT = 'alt'
+
+    # Setas
+    UP = 'up'
+    DOWN = 'down'
+    LEFT = 'left'
+    RIGHT = 'right'
+
+    # Função
+    F1 = 'f1'
+    F2 = 'f2'
+    F3 = 'f3'
+    F4 = 'f4'
+    F5 = 'f5'
+    F6 = 'f6'
+    F7 = 'f7'
+    F8 = 'f8'
+    F9 = 'f9'
+    F10 = 'f10'
+    F11 = 'f11'
+    F12 = 'f12'

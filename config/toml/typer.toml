@@ -1,0 +1,6 @@
+[TYPER.MACRO]
+help = 'Módulo que agrupa macros.'
+
+[TYPER.CHRONICLE_MATCH]
+help = 'Executa o macro responsável por partidas no Modo Crônica.'
+max_loops_help = 'Define o máximo de loops para o macro. (default: ∞)'
