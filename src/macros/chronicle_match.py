@@ -106,7 +106,7 @@ chronicle_match_steps: list[StepSpec] = [
     },
     {
         'name': 'Passe inicial',
-        'actions': [lambda: mouse_click(500, 500)],
+        'actions': [lambda: mouse_click(1, 1)],
         'delay_after': 0.5,
         'delay_jitter': 0.5,
     },
