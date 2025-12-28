@@ -21,9 +21,9 @@ class Pipeline:
 
     def run(self):
         while True:
-            alive = self._tick()
+            has_more_steps = self._tick()
 
-            if not alive:
+            if not has_more_steps:
                 self.loop_count += 1
 
                 if self.max_loops is not None and self.loop_count >= self.max_loops:
@@ -80,7 +80,7 @@ class Pipeline:
         return self._resolve_label(goto)
 
     def _transition(self, step: Step, target_index: int):
-        self._sleep_with_jitter(
+        self._delay(
             step.delay_after,
             step.delay_jitter
         )
@@ -125,7 +125,6 @@ class Pipeline:
                     raise ValueError(f"Label duplicado: {step.label}")
                 label_map[step.label] = index
 
-            # fallback automático por índice
             label_map[str(index)] = index
 
         return label_map
@@ -139,7 +138,7 @@ class Pipeline:
 
         return self._label_map[label]
 
-    def _sleep_with_jitter(self, base: float, jitter: float):
+    def _delay(self, base: float, jitter: float):
         base = max(base, 0.0)
         extra = random.uniform(0, jitter) if jitter > 0 else 0.0
         time.sleep(base + extra)
