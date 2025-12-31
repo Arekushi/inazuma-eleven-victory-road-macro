@@ -3,9 +3,9 @@ help = 'Módulo que agrupa macros.'
 
 [TYPER.CHRONICLE_MATCH]
 help = 'Executa o macro responsável por partidas no Modo Crônica.'
-max_loops_help = 'Define o máximo de loops. (default: ∞)'
+max_loops_help = 'Número máximo de loops. (default: ∞)'
 
 [TYPER.OPENING_ANIMUS]
 help = 'Executa o macro responsável por abrir Animus de jogadores.'
-max_loops_help = 'Define o máximo de loops. (default: ∞)'
-passive_criteria_path_help = 'Define o caminho direto ao arquivo .JSON que contém o critério das passivas do Animus.'
+max_loops_help = 'Número máximo de loops. (default: ∞)'
+passive_criteria_path_help = 'Caminho direto ao arquivo .JSON que contém como será o critério das passivas dos Animus.'
