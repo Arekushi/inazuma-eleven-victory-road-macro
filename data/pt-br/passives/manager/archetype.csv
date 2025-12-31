@@ -1,0 +1,26 @@
+archetype,text,legendary_low,legendary_high,top_low,top_high,advanced_low,advanced_high,growing_low,growing_high,common_low,common_high
+BREACH,"Taxa de Tiro Certeiro do time {value}",1.2,1.8,1.0,1.44,0.8,1.08,0.7,0.72,0.5,0.36
+BREACH,"Quando empatado ou perdendo em gols, o time recebe taxa de Tiro Certeiro {value}",2.0,2.7,1.7,2.4,1.5,2.0,1.3,1.7,1.0,1.5
+BREACH,"Quando o bônus de Tiro Certeiro for de pelo menos 15%, aumenta a perfuração de Muralha do time em {value}",2.5,3.6,2.2,3.0,2.0,2.6,1.7,2.3,1.5,2.0
+BREACH,"Tensão necessária para o Tiro Certeiro do time reduzida em {value}",-2.5,-3.6,-2.2,-3.3,-2.0,-3.0,-1.7,-2.7,-1.5,-2.5
+TENSION,"Se o adversário der um passe durante o Choque, aplica uma penalidade de {value} da Tensão",50,65,40,50,30,35,20,20,10,15
+TENSION,"Quando o time vence no Choque ou no Embate, aumenta o bônus de Tensão em {value}",4.0,5.4,3.7,4.9,3.5,4.6,3.2,4.3,3.0,4.0
+TENSION,"Quando a Tensão estiver em 50% ou mais, o time recebe AT/DF de Choque {value}",1.5,2.0,1.4,1.8,1.3,1.7,1.2,1.6,1.1,1.5
+TENSION,"Quando a Tensão estiver em 100%, o time recebe AT de Chute {value}",4.5,5.5,4.3,5.3,4.0,5.0,3.7,4.7,3.5,4.5
+COUNTER,"Ao recuperar a bola sem ser uma defesa no gol, o time recebe AT de Chute {value} por 15s",3.0,3.5,2.7,3.2,2.5,3.0,2.2,2.7,2.0,2.5
+COUNTER,"Ao recuperar a bola sem ser uma defesa no gol, todos os MEI recebem AT/DF de Choque {value} por 15s",1.5,2.0,1.3,1.7,1.2,1.5,1.1,1.2,1.0,1.0
+COUNTER,"Ao recuperar a bola sem ser uma defesa no gol, todos os DEF recebem AT/DF de Choque {value} por 15s",1.5,2.0,1.3,1.7,1.2,1.5,1.1,1.2,1.0,1.0
+COUNTER,"Ao recuperar a bola sem ser uma defesa no gol, aumenta o PD em {value} por 15s",3.5,5.0,3.3,4.5,3.0,4.0,2.7,3.5,2.5,3.0
+COUNTER,"Ao recuperar a bola sem ser uma defesa no gol, o time recebe AT/DF de Ataque Bruto {value} por 15s",4.5,6.0,4.2,5.5,4.0,5.0,3.7,4.5,3.5,4.0
+BOND,"Quando o time dá um passe, aumenta o bônus de Vínculo em {value}",4.0,5.5,3.7,5.0,3.5,4.5,3.2,4.0,3.0,3.5
+BOND,"Quando o vínculo estiver em 20% ou mais, o time recebe AT/DF de Embate {value}",7.0,9.0,6.0,8.0,5.0,7.0,4.0,6.0,3.0,5.0
+BOND,"Quando o Vínculo estiver em 20% ou mais, o time recebe AT/DF de Tiro Direto {value}",3.0,3.5,2.7,3.2,2.5,3.0,2.3,2.7,2.0,2.5
+BOND,"Quando o time perde o Embate, a penalidade de Vínculo é reduzida em {value} por 10s",-9,-9,-8,-8,-7,-7,-6,-6,-5,-5
+ROUGH_PLAY,"Taxa de faltas do time em arrancadas reduzida em {value}",-2.5,-4.0,-2.2,-3.7,-2.0,-2.5,-1.7,-2.2,-1.5,-2.0
+ROUGH_PLAY,"Taxa de faltas do time fora da Zona de ÁREA reduzida em {value}",-2.5,-4.0,-2.2,-3.7,-2.0,-2.5,-1.7,-2.2,-1.5,-2.0
+ROUGH_PLAY,"Ao arremessar um adversário com arrancada, a Tensão do time aumenta em {value}",2.5,4.0,2.2,3.7,2.0,2.5,1.7,2.2,1.5,2.0
+ROUGH_PLAY,"Ao arremessar um adversário com a arrancada, o time recebe AT/DF {value} no próximo Ataque Bruto",3.5,5.0,3.3,4.5,3.0,4.0,2.7,3.5,2.5,3.0
+JUSTICE,"Se um aliado é arremessado, o Vínculo do time aumenta em {value}",6.0,8.0,5.5,7.5,5.0,7.0,4.5,6.5,4.0,6.0
+JUSTICE,"Quando um adversário comete uma falta, o Vínculo do time aumenta em {value}",6.0,7.0,5.5,6.5,5.0,6.0,4.5,5.5,4.0,5.0
+JUSTICE,"Até o time receber uma falta, aumenta a DF da Muralha do time em {value}",1.5,2.0,1.3,1.8,1.2,1.7,1.1,1.6,1.0,1.5
+JUSTICE,"Até o time receber uma falta, aumenta o AT/DF do time em {value}",1.5,2.0,1.3,1.8,1.2,1.7,1.1,1.6,1.0,1.5

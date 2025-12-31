@@ -2,9 +2,8 @@ import typer
 from rich.console import Console
 from config import settings
 
-from src.pipeline.pipeline import Pipeline
-from src.pipeline.step import Step
-from src.macros.chronicle_match import chronicle_match_steps
+from src.macro.steps.chronicle_match import CHRONICLE_MATCH_STEPS
+from src.pipeline.core import Pipeline, Step
 
 
 console = Console()
@@ -29,8 +28,11 @@ def chronicle_match_command(
 
 def chronicle_match(max_loops):
     steps = [
-        Step.from_spec(spec) for spec in chronicle_match_steps
+        Step.from_spec(spec) for spec in CHRONICLE_MATCH_STEPS
     ]
 
-    pipeline = Pipeline(steps, max_loops=max_loops)
+    pipeline = Pipeline(
+        steps,
+        max_loops=max_loops
+    )
     pipeline.run()

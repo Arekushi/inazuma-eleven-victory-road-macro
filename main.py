@@ -1,10 +1,10 @@
 import typer
-import src.commands.macro.macro as macro
+from src.commands.macro.macro import app as macro_app
 
 
 def main():
     app = typer.Typer()
-    app.add_typer(macro.app, name='macro')
+    app.add_typer(macro_app, name='macro')
 
     app()
 

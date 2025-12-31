@@ -1,0 +1,72 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "PassiveCriteria",
+    "type": "object",
+    "required": [
+        "language",
+        "player-type",
+        "player-rarity",
+        "slots"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "language": {
+            "type": "string",
+            "enum": [
+                "pt-br",
+                "en"
+            ]
+        },
+        "player-type": {
+            "type": "string",
+            "enum": [
+                "player",
+                "manager",
+                "coordinator"
+            ]
+        },
+        "player-rarity": {
+            "type": "string",
+            "enum": [
+                "legendary",
+                "top",
+                "advanced",
+                "growing",
+                "common"
+            ]
+        },
+        "slots": {
+            "type": "object",
+            "description": "Map of slot number to desired passives",
+            "additionalProperties": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/$defs/desiredPassive"
+                },
+                "minItems": 1
+            }
+        }
+    },
+    "$defs": {
+        "desiredPassive": {
+            "type": "object",
+            "required": [
+                "id",
+                "quality"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "quality": {
+                    "type": "string",
+                    "enum": [
+                        "high",
+                        "any"
+                    ]
+                }
+            }
+        }
+    }
+}
