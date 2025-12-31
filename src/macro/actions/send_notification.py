@@ -23,7 +23,7 @@ def send_notification(
     
     try:
         loop = asyncio.get_running_loop()
-        task = asyncio.create_task(send_coro())
+        _ = asyncio.create_task(send_coro())
     except RuntimeError:
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
