@@ -8,7 +8,7 @@
         "player-rarity",
         "slots"
     ],
-    "additionalProperties": false,
+    "additionalProperties": true,
     "properties": {
         "language": {
             "type": "string",
