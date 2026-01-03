@@ -53,6 +53,8 @@ class Key(str, Enum):
     SHIFT = 'shift'
     CTRL = 'ctrl'
     ALT = 'alt'
+    ALT_LEFT = 'altleft'
+    ALT_RIGHT = 'altright'
 
     # Setas
     UP = 'up'

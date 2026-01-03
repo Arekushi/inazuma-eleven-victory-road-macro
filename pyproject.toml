@@ -19,7 +19,9 @@ dependencies = [
     "pytesseract (>=0.3.13,<0.4.0)",
     "pillow (>=12.0.0,<13.0.0)",
     "desktop-notifier (>=6.2.0,<7.0.0)",
-    "asyncio (>=4.0.0,<5.0.0)"
+    "asyncio (>=4.0.0,<5.0.0)",
+    "fastapi (>=0.128.0,<0.129.0)",
+    "uvicorn (>=0.40.0,<0.41.0)",
 ]
 
 

@@ -15,7 +15,8 @@ class Step:
         goto: str | None = None,
         delay_after=0.0,
         delay_jitter: float = 0.0,
-        timeout=30.0
+        timeout=30.0,
+        repeat=1,
     ):
         self.name = name 
         self.label = label
@@ -27,8 +28,10 @@ class Step:
         self.delay_after = delay_after
         self.delay_jitter = delay_jitter
         self.timeout = timeout
+        self.repeat = repeat
 
         self._start_time = None
+        self._current_repeat = 0
 
     def execute_actions(self, pipeline_ctx: PipelineContext):
         for action in self.actions:
@@ -37,6 +40,10 @@ class Step:
 
     def reset(self):
         self._start_time = None
+        self._current_repeat = 0
+    
+    def increment_repeat(self):
+        self._current_repeat += 1
         
     @classmethod
     def from_spec(cls, spec):
@@ -53,7 +60,8 @@ class Step:
             goto=spec.get('goto'),
             delay_after=spec.get('delay_after', 0.0),
             delay_jitter=spec.get('delay_jitter', 0.0),
-            timeout=spec.get('timeout', float('inf'))
+            timeout=spec.get('timeout', float('inf')),
+            repeat=spec.get('repeat', 1)
         )
     
     @property

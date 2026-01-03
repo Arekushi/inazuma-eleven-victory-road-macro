@@ -19,3 +19,4 @@ class StepSpec(TypedDict):
 
     timeout: NotRequired[float]
     on_timeout: NotRequired[str | int]
+    repeat: NotRequired[int]

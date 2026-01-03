@@ -11,6 +11,8 @@ def _parse_passive_criteria(data: Dict[str, Any]) -> PassiveCriteria:
     slots: Dict[int, list[DesiredPassive]] = {}
     slots_data = data.get('slots', {})
     
+    name = data.get('name', None)
+    quantity = int(data.get('quantity'))
     language = Language(data.get('language', None))
     player_type = PlayerType(data.get('player-type', None))
     player_rarity = PlayerRarity(data.get('player-rarity', None))
@@ -27,6 +29,8 @@ def _parse_passive_criteria(data: Dict[str, Any]) -> PassiveCriteria:
         ]
 
     return PassiveCriteria(
+        name=name,
+        quantity=quantity,
         language=language,
         player_type=player_type,
         player_rarity=player_rarity,

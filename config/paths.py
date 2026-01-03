@@ -10,6 +10,7 @@ class Paths:
     ASSETS = PROJECT_ROOT / 'assets'
     DATA = PROJECT_ROOT / 'data'
     PROFILES = PROJECT_ROOT / 'profiles'
+    TEMP = PROJECT_ROOT / 'temp'
 
     @staticmethod
     def assets_lang(lang: Language) -> Path:

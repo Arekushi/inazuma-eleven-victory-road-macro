@@ -1,5 +1,6 @@
 import pyautogui
 
+
 def mouse_click(x=None, y=None, button="left"):
     """
     Clique do mouse.

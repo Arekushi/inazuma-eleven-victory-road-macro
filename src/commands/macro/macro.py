@@ -1,8 +1,8 @@
 import typer
 
 from config import settings
-from .chronicle_match_command import chronicle_match_command
-from .opening_animus_command import opening_animus_command
+from .sub.chronicle_match_command import chronicle_match_command
+from .sub.opening_animus_command import opening_animus_command
 
 
 app = typer.Typer(

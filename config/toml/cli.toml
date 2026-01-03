@@ -5,7 +5,8 @@ failed = ':x: A execução do macro [white on red] falhou... [/]'
 [CLI.OPENING_ANIMUS]
 rule = ':new_moon: [b]Executando o macro...[/]'
 failed = ':x: A execução do macro [white on red] falhou... [/]'
+passives = '[b]$loop_count/$max_loops[/] [b]$slot_number[/] | $passive_ocr_text'
 
 [CLI.PIPELINE]
-timeout = '[b][<loop_count>/<loop_length>][/] :alarm_clock: Timeout em: [b][<step_name>][/]'
-enter_step = '[b][<loop_count>/<loop_length>][/] :point_right: Entrando no passo: [b][<step_name>][/]'
+timeout = '[b]$loop_count/$max_loops[/] :alarm_clock: Timeout em: [b]$step_name[/]'
+enter_step = '[b]$loop_count/$max_loops[/] :point_right: Entrando no passo: [b]$step_name[/]'

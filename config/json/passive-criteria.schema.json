@@ -3,6 +3,8 @@
     "title": "PassiveCriteria",
     "type": "object",
     "required": [
+        "name",
+        "quantity",
         "language",
         "player-type",
         "player-rarity",
@@ -10,6 +12,12 @@
     ],
     "additionalProperties": true,
     "properties": {
+        "name": {
+            "type": "string"
+        },
+        "quantity": {
+            "type": "integer"
+        },
         "language": {
             "type": "string",
             "enum": [

@@ -1,2 +1,3 @@
 from .is_image_on_screen import is_image_on_screen
 from .passives_are_valid import passives_are_valid
+from .has_no_spirit_left import has_no_spirit_left
