@@ -41,10 +41,10 @@ class Step:
     def reset(self):
         self._start_time = None
         self._current_repeat = 0
-    
+
     def increment_repeat(self):
         self._current_repeat += 1
-        
+
     @classmethod
     def from_spec(cls, spec):
         rules = [
@@ -63,7 +63,3 @@ class Step:
             timeout=spec.get('timeout', float('inf')),
             repeat=spec.get('repeat', 1)
         )
-    
-    @property
-    def is_watcher(self):
-        return bool(self.rules)
