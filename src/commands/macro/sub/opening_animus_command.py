@@ -4,16 +4,28 @@ from typing import Optional
 from rich.console import Console
 from config import settings
 
-from src.pipeline.observers.handlers import PipelineStartLogHandler, \
-    StepEnterLogHandler, PipelineEndLogHandler, OpeningAnimusTimeoutLogHandler, \
-    PipelineResetLogHandler
-
 from src.logging import LoggerFactory, LoggerConfig
+from src.pipeline.observers.handlers import (
+    PipelineStartLogHandler,
+    StepEnterLogHandler,
+    PipelineEndLogHandler,
+    OpeningAnimusTimeoutLogHandler,
+    PipelineResetLogHandler
+)
+
+from src.profiles.loaders import load_profile_by_name
+from src.profiles.classes import Profile
+from src.profiles.exceptions import PassiveCriteriaNotFoundException
+
 from src.pipeline.observers import PipelineLogger
-from src.macro.steps import OPENING_ANIMUS_STEPS
-from src.passives.loaders import load_passive_criteria_from_path, load_passives
-from src.passives.classes import PassiveCriteria
-from src.pipeline.core import Pipeline, Step
+
+from src.passives.loaders import load_passives
+from src.dsl.compiler import PipelineCompiler
+
+from src.commands.helpers import (
+    select_profile_name,
+    select_passive_criteria
+)
 
 
 console = Console()
@@ -21,10 +33,15 @@ app = typer.Typer(help=settings.TYPER.OPENING_ANIMUS.help)
 
 @app.command('opening-animus', help=settings.TYPER.OPENING_ANIMUS.help)
 def opening_animus_command(
-    passive_criteria_path: str = typer.Option(
-        ...,
+    profile_name: str = typer.Option(
+        None,
+        '--profile',
+        help=settings.TYPER.MACRO.profile_name_help
+    ),
+    passive_criteria_name: str = typer.Option(
+        None,
         '--criteria',
-        help=settings.TYPER.OPENING_ANIMUS.passive_criteria_path_help
+        help=settings.TYPER.OPENING_ANIMUS.passive_criteria_name_help
     ),
     max_loops: Optional[int] = typer.Option(
         None,
@@ -40,44 +57,60 @@ def opening_animus_command(
     console.rule(settings.CLI.OPENING_ANIMUS.rule)
     
     try:
-        criteria = load_passive_criteria_from_path(passive_criteria_path)
-        opening_animus(max_loops, criteria, enable_log)
+        if profile_name is None:
+            profile_name = select_profile_name()
+
+        profile = load_profile_by_name(profile_name)
+
+        if not passive_criteria_name:
+            passive_criteria_name = select_passive_criteria(profile.passive_criterias)
+        elif passive_criteria_name not in profile.passive_criterias:
+            raise PassiveCriteriaNotFoundException(
+                passive_criteria_name,
+                profile.name
+            )
+                
+        opening_animus(
+            profile,
+            passive_criteria_name,
+            max_loops,
+            enable_log
+        )
     except Exception:
         console.print(settings.CLI.OPENING_ANIMUS.failed)
-        console.print_exception(show_locals=True)
+        console.print_exception(show_locals=False)
 
 
 def opening_animus(
-    max_loops: Optional[int],
-    criteria: PassiveCriteria,
+    profile: Profile,
+    passive_criteria_name: str,
+    max_loops: Optional[int] = None,
     enable_log: bool = True
 ):
-    passives = load_passives(
-        player_type=criteria.player_type,
-        language=criteria.language
-    )
+    criteria = profile.passive_criterias[passive_criteria_name]
+    pipeline = PipelineCompiler.compile_file(profile.macros['opening-animus'].path)
     
-    steps = [
-        Step.from_spec(spec) for spec in OPENING_ANIMUS_STEPS
-    ]
+    passives = load_passives(
+        spirit_type=criteria.spirit.type,
+        language=profile.language
+    )
     
     logger = LoggerFactory.get_logger(
         config=LoggerConfig(
-            log_filename=f'{criteria.name}-{datetime.now().strftime("%H-%M-%S")}'
+            name='opening-animus-command',
+            log_filename=f'{criteria.spirit.name.lower()}-{datetime.now().strftime("%Y-%m-%d-%H-%M-%S.%f")}'
         )
     )
-
-    pipeline = Pipeline(
-        steps=steps,
-        logger=logger,
-        max_loops=max_loops,
-        context_data={
-            'passives': passives,
-            'criteria': criteria
-        },
-    )
+    
+    pipeline.max_loops = max_loops
+    pipeline.context.update({
+        'passives': passives,
+        'criteria': criteria,
+        'profile': profile
+    })
     
     if enable_log:
+        pipeline.logger = logger
         pipeline.add_observer(
             PipelineLogger(
                 logger=logger,

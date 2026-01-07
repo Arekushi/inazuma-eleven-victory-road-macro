@@ -3,55 +3,27 @@
     "title": "PassiveCriteria",
     "type": "object",
     "required": [
-        "name",
-        "quantity",
         "language",
-        "player-type",
-        "player-rarity",
+        "spirit",
         "slots"
     ],
     "additionalProperties": true,
     "properties": {
-        "name": {
-            "type": "string"
-        },
-        "quantity": {
-            "type": "integer"
-        },
         "language": {
-            "type": "string",
-            "enum": [
-                "pt-br",
-                "en"
-            ]
+            "$ref": "#/$defs/language"
         },
-        "player-type": {
-            "type": "string",
-            "enum": [
-                "player",
-                "manager",
-                "coordinator"
-            ]
-        },
-        "player-rarity": {
-            "type": "string",
-            "enum": [
-                "legendary",
-                "top",
-                "advanced",
-                "growing",
-                "common"
-            ]
+        "spirit": {
+            "$ref": "#/$defs/desiredSpirit"
         },
         "slots": {
             "type": "object",
             "description": "Map of slot number to desired passives",
             "additionalProperties": {
                 "type": "array",
+                "minItems": 1,
                 "items": {
                     "$ref": "#/$defs/desiredPassive"
-                },
-                "minItems": 1
+                }
             }
         }
     },
@@ -65,16 +37,99 @@
             "additionalProperties": false,
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "number"
                 },
                 "quality": {
-                    "type": "string",
-                    "enum": [
-                        "high",
-                        "any"
-                    ]
+                    "$ref": "#/$defs/passiveQuality"
                 }
             }
+        },
+        "desiredSpirit": {
+            "type": "object",
+            "required": [
+                "quantity",
+                "type",
+                "rarity",
+                "game",
+                "down",
+                "right"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "quantity": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "type": {
+                    "$ref": "#/$defs/playerType"
+                },
+                "rarity": {
+                    "$ref": "#/$defs/playerRarity"
+                },
+                "game": {
+                    "$ref": "#/$defs/ieGame"
+                },
+                "down": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "right": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        },
+        "language": {
+            "type": "string",
+            "enum": [
+                "pt-br",
+                "en"
+            ]
+        },
+        "playerType": {
+            "type": "string",
+            "enum": [
+                "player",
+                "manager",
+                "coordinator"
+            ]
+        },
+        "playerRarity": {
+            "type": "string",
+            "enum": [
+                "legendary",
+                "top",
+                "advanced",
+                "growing",
+                "common"
+            ]
+        },
+        "passiveQuality": {
+            "type": "string",
+            "enum": [
+                "high",
+                "any"
+            ]
+        },
+        "ieGame": {
+            "type": "string",
+            "enum": [
+                "IE1",
+                "IE2",
+                "IE3",
+                "GO",
+                "GO2",
+                "GO_GALAXY",
+                "ARES",
+                "ORION",
+                "VICTORY_ROAD"
+            ]
         }
     }
 }

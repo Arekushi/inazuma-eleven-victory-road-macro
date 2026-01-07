@@ -1,4 +1,4 @@
-from src.passives.classes import PassiveCriteria
+from src.profiles.classes import PassiveCriteria
 from src.pipeline.classes import PipelineContext
 
 
@@ -11,5 +11,10 @@ def has_no_spirit_left(pipeline_ctx: PipelineContext) -> bool:
     if criteria is None:
         return True
     
-    opened_spirits_count = pipeline_ctx.pop('opened_spirits_count', 0)    
-    return opened_spirits_count >= criteria.quantity
+    opened_spirits_count = pipeline_ctx.get('opened_spirits_count', 0)
+    
+    if opened_spirits_count >= criteria.spirit.quantity:
+        pipeline_ctx.pop('opened_spirits_count')
+        return True
+    
+    return False

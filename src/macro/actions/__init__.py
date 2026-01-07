@@ -6,3 +6,4 @@ from .send_notification import send_notification
 from .stop_pipeline import stop_pipeline
 from .register_spirit_opened import register_spirit_opened
 from .log_line_break import log_line_break
+from .goto_spirit import goto_spirit

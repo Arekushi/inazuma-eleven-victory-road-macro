@@ -1,0 +1,2 @@
+class DirectoryDeleteException(Exception):
+    pass

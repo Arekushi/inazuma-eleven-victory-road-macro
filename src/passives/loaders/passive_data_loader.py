@@ -4,25 +4,25 @@ from typing import Dict
 from config.paths import Paths
 
 from src.enums import Language
-from src.passives.enums import PassiveType, PlayerType, PlayerRarity
+from src.passives.enums import PassiveType, SpiritType, SpiritRarity
 from src.passives.classes import PassiveValues, Passive
 
 
 def parse_passive_row(
     row: Dict[str, str],
-    player_type: PlayerType
+    spirit_type: SpiritType
 ) -> Passive:
     passive_id = int(row['id'])
     archetype = row.get('archetype') or None
     text = row['text']
 
-    values_by_rarity: Dict[PlayerRarity, PassiveValues] = {}
+    values_by_rarity: Dict[SpiritRarity, PassiveValues] = {}
 
-    for player_rarity in PlayerRarity:
-        low = float(row[f'{player_rarity.value}_low'])
-        high = float(row[f'{player_rarity.value}_high'])
+    for spirit_rarity in SpiritRarity:
+        low = float(row[f'{spirit_rarity.value}_low'])
+        high = float(row[f'{spirit_rarity.value}_high'])
 
-        values_by_rarity[player_rarity] = PassiveValues(
+        values_by_rarity[spirit_rarity] = PassiveValues(
             low=low,
             high=high
         )
@@ -31,15 +31,15 @@ def parse_passive_row(
         id=passive_id,
         archetype=archetype,
         text=text,
-        values={player_type: values_by_rarity},
+        values={spirit_type: values_by_rarity},
     )
 
 
 def load_passives_from_path(
     path: Path,
-    player_type: PlayerType
-) -> Dict[str, Passive]:
-    passives: Dict[str, Passive] = {}
+    spirit_type: SpiritType
+) -> Dict[int, Passive]:
+    passives: Dict[int, Passive] = {}
 
     with path.open(encoding='utf-8') as f:
         reader = csv.DictReader(f)
@@ -47,7 +47,7 @@ def load_passives_from_path(
         for row in reader:
             passive = parse_passive_row(
                 row=row,
-                player_type=player_type
+                spirit_type=spirit_type
             )
             passives[passive.id] = passive
 
@@ -55,27 +55,28 @@ def load_passives_from_path(
 
 
 def load_passives_by_type(
-    player_type: PlayerType,
+    spirit_type: SpiritType,
     language: Language,
     type: PassiveType
-) -> Dict[str, Passive]:
-    path = Paths.passives(language, player_type) / f'{type.value}.csv'
+) -> Dict[int, Passive]:
+    passive_path = Paths.passive_data_by_type(language, spirit_type, type)
+    
     return load_passives_from_path(
-        path=path,
-        player_type=player_type
+        path=passive_path,
+        spirit_type=spirit_type
     )
 
 
 def load_passives(
-    player_type: PlayerType,
+    spirit_type: SpiritType,
     language: Language,
-) -> Dict[str, Passive]:
-    all_passives: Dict[str, Passive] = {}
+) -> Dict[int, Passive]:
+    all_passives: Dict[int, Passive] = {}
 
     for passive_type in PassiveType:
         all_passives.update(
             load_passives_by_type(
-                player_type=player_type,
+                spirit_type=spirit_type,
                 language=language,
                 type=passive_type
             )

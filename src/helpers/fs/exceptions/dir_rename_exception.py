@@ -1,0 +1,2 @@
+class DirectoryRenameException(Exception):
+    pass

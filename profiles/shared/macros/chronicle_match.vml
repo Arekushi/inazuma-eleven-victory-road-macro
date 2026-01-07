@@ -1,0 +1,85 @@
+"Focar na tela":
+    do [focus "INAZUMA ELEVEN: Victory Road"]
+    @delay 0.1s
+
+"Listar times":
+    do [press V]
+    @delay 1s
+
+"Confirmar time":
+    do [press ENTER]
+    @delay 1.5s
+
+"Subir dificuldade":
+    do [press UP]
+    @delay 0.5s
+    @repeat 2
+
+"Confirmar dificuldade":
+    do [press ENTER]
+    @delay 1.0s
+
+"Confirmar jogo":
+    do [press ENTER]
+    @delay 0.5s
+    @repeat 3
+
+"Confirmar após loading":
+    @delay 3.0s
+    @timeout 10.0s
+    when [is_image_on_screen start-validator (750, 900, 500, 150) 0.8] every 1.0s:
+        do [press ENTER]
+
+"Confirmar formação":
+    do [press ENTER]
+    @delay 1.5s
+
+"Pular introdução":
+    do [hold V 2.0s]
+    @delay 0.5s
+    @repeat 2
+
+"Confirmar visualização da formação [01/02]":
+    do [press ENTER]
+    @delay 1.0s
+
+"Confirmar visualização da formação [02/02]":
+    do [press ENTER]
+    @delay 4.0s
+
+"Passe inicial":
+    do [click 10 10]
+    @delay 0.5s
+
+"Iniciar Modo Comandante":
+    do [press U]
+    @delay 0.5s
+
+"Ativar Câmera Cinematográfica":
+    do [press C]
+    @delay 0.5s
+
+"Verificar se o primeiro tempo acabou ou se será vitória por vantagem":
+    @delay 0.5s
+    @timeout 500
+    when [is_image_on_screen end-first-half-validator (150, 950, 600, 100) 0.8] every 5.0s:
+        do [press ENTER]
+    when [is_image_on_screen end-second-half-validator (1500, 900, 450, 200) 0.8] every 5.0s:
+        do [press ENTER]
+        @goto end
+
+"Verificar se o segundo tempo acabou":
+    @delay 0.5s
+    @timeout 500
+    when [is_image_on_screen end-second-half-validator (1500, 900, 450, 200) 0.8] every 5.0s:
+        do [press ENTER]
+
+"Próximo":
+    do [press ENTER]
+    @label end
+    @delay 1.0s
+    @repeat 2
+
+"Finalizar":
+    do [press ENTER]
+    @delay 5.0s

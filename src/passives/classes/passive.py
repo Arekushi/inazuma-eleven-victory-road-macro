@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Dict
 
-from src.passives.enums import PlayerType, PlayerRarity
+from src.passives.enums import SpiritType, SpiritRarity
 from src.passives.classes import PassiveValues
 
 
@@ -10,4 +10,4 @@ class Passive:
     id: int
     archetype: str | None
     text: str
-    values: Dict[PlayerType, Dict[PlayerRarity, PassiveValues]]
+    values: Dict[SpiritType, Dict[SpiritRarity, PassiveValues]]

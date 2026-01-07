@@ -1,6 +1,6 @@
 [project]
 name = "inazuma-eleven-victory-road-macro"
-version = "0.1.0"
+version = "1.0.0"
 description = ""
 authors = [
     {name = "Alexandre Lima", email = "alex.ferreiradelima@proton.me"}
@@ -22,6 +22,8 @@ dependencies = [
     "asyncio (>=4.0.0,<5.0.0)",
     "fastapi (>=0.128.0,<0.129.0)",
     "uvicorn (>=0.40.0,<0.41.0)",
+    "questionary (>=2.1.1,<3.0.0)",
+    "pywin32 (>=311,<312)",
 ]
 
 

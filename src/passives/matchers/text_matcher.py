@@ -1,4 +1,4 @@
-from src.passives.enums import PassiveQualityCriteria
+from src.profiles.enums import PassiveQualityCriteria
 from src.passives.classes import PassiveValues
 from src.passives.ocr import normalize_passive_text, resolve_value_placeholder
 

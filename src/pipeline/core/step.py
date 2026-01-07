@@ -14,7 +14,7 @@ class Step:
         rules: list[ConditionRule] | None = None,
         goto: str | None = None,
         delay_after=0.0,
-        delay_jitter: float = 0.0,
+        delay_jitter=0.0,
         timeout=30.0,
         repeat=1,
     ):

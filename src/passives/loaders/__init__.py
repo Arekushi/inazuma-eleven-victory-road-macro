@@ -1,2 +1,5 @@
-from .passive_data_loader import load_passives, load_passives_by_type, load_passives_from_path
-from .passive_criteria_loader import load_passive_criteria_from_path
+from .passive_data_loader import (
+    load_passives,
+    load_passives_by_type,
+    load_passives_from_path,
+)

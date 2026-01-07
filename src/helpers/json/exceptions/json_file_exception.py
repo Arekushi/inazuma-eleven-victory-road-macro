@@ -1,0 +1,2 @@
+class JsonFileError(Exception):
+    pass

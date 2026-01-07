@@ -1,0 +1,2 @@
+class FileOperationException(Exception):
+    pass

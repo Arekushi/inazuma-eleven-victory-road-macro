@@ -2,3 +2,7 @@
 host = '127.0.0.1'
 port = 8989
 reload = true
+
+[JSON]
+profile_schema = 'https://raw.githubusercontent.com/Arekushi/inazuma-eleven-victory-road-macro/refs/heads/main/config/json/profile.schema.json'
+passive_criteria_schema = 'https://raw.githubusercontent.com/Arekushi/inazuma-eleven-victory-road-macro/refs/heads/main/config/json/passive-criteria.schema.json'

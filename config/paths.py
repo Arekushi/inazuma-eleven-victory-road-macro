@@ -1,12 +1,11 @@
 from pathlib import Path
 
-from src.passives.enums.player_type import PlayerType
-from src.enums import Language
-
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+from src.passives.enums import SpiritType, PassiveType
+from src.enums import Language, FileExt
 
 
 class Paths:
+    PROJECT_ROOT = Path(__file__).resolve().parent.parent
     ASSETS = PROJECT_ROOT / 'assets'
     DATA = PROJECT_ROOT / 'data'
     PROFILES = PROJECT_ROOT / 'profiles'
@@ -23,17 +22,41 @@ class Paths:
     @staticmethod
     def data_lang(lang: Language) -> Path:
         return Paths.DATA / lang.value
-
+    
     @staticmethod
-    def passives(
+    def passive_data_by_type(
         language: Language,
-        player_type: PlayerType
+        spirit_type: SpiritType,
+        type: PassiveType
     ) -> Path:
-        return Paths.data_lang(language) / 'passives' / player_type.value
+        return Paths.data_lang(language) / 'passives' / spirit_type.value / f'{type.value}.{FileExt.CSV.value}'
     
     @staticmethod
     def passive_criteria(
-        user: str,
+        profile_name: str,
+        passive_criteria_name: str
+    ) -> Path:
+        return Paths.PROFILES / profile_name / 'passive-criteria' / f'{passive_criteria_name}.{FileExt.JSON.value}'
+    
+    @staticmethod
+    def all_passive_criteria(
+        profile_name: str
+    ) -> Path:
+        return Paths.PROFILES / profile_name / 'passive-criteria'
+    
+    @staticmethod
+    def macro(
+        profile_name: str,
         file_name: str
     ) -> Path:
-        return Paths.PROFILES / user / 'passive-criteria' / f'{file_name}.json'
+        return Paths.PROFILES / profile_name / 'macros' / f'{file_name}.{FileExt.VML.value}'
+    
+    @staticmethod
+    def macros(
+        profile_name: str
+    ) -> Path:
+        return Paths.PROFILES / profile_name / 'macros'
+    
+    @staticmethod
+    def profile_file(profile_name: str) -> Path:
+        return Paths.PROFILES / profile_name / f'profile.{FileExt.JSON.value}'

@@ -1,13 +1,9 @@
 import pyautogui
+from src.enums import MouseButton
 
 
-def mouse_click(x=None, y=None, button="left"):
-    """
-    Clique do mouse.
-    - Se x e y forem None, clica na posição atual.
-    - button: left | right | middle
-    """
+def mouse_click(x=None, y=None, button = MouseButton.LEFT):
     if x is not None and y is not None:
-        pyautogui.click(x=x, y=y, button=button)
+        pyautogui.click(x=x, y=y, button=button.value)
     else:
         pyautogui.click(button=button)

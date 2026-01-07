@@ -1,0 +1,30 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Profile",
+    "type": "object",
+    "required": [
+        "language",
+        "name"
+    ],
+    "additionalProperties": true,
+    "properties": {
+        "language": {
+            "$ref": "#/$defs/language"
+        },
+        "name": {
+            "$ref": "#/$defs/name"
+        }
+    },
+    "$defs": {
+        "language": {
+            "type": "string",
+            "enum": [
+                "pt-br",
+                "en"
+            ]
+        },
+        "name": {
+            "type": "string"
+        }
+    }
+}

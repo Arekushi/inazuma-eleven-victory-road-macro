@@ -1,10 +1,7 @@
-from logging import Logger
 import time
 import random
-
+from logging import Logger
 from typing import Dict, List, Optional
-from config import settings
-from rich.console import Console
 
 from src.pipeline.enums import PipelineEventType
 from src.pipeline.exceptions import StopPipeline
@@ -13,18 +10,16 @@ from src.pipeline.classes import PipelineContext, StepNavigator, \
 from src.pipeline.core import Step
 
 
-console = Console()
-
-
 class Pipeline:
     def __init__(
         self,
         steps: List[Step],
-        logger: Logger,
+        logger: Optional[Logger] = None,
         max_loops: Optional[int] = None,
         context_data: Optional[dict] = None,
     ):
         self.steps = steps
+        self.logger = logger
         self.max_loops = max_loops
         self.current = 0
         self.loop_count = 0
@@ -33,7 +28,6 @@ class Pipeline:
             logger=logger
         )
 
-        self._logger = logger
         self._observers: list[PipelineObserver] = []
         self._label_map = self._build_label_map()
 
@@ -185,7 +179,6 @@ class Pipeline:
         if 0 <= self.current < len(self.steps):
             step_name = self.steps[self.current].name
 
-        
         return PipelineSnapshot(
             current_step=step_name,
             loop_count=self.loop_count,

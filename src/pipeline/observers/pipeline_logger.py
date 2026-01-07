@@ -8,7 +8,6 @@ from .handlers.base import PipelineLogHandler
 
 
 class PipelineLogger(PipelineObserver):
-
     def __init__(
         self,
         logger: Logger,

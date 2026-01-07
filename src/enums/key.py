@@ -2,7 +2,6 @@ from enum import Enum
 
 
 class Key(str, Enum):
-    # Letras
     A = 'a'
     B = 'b'
     C = 'c'
@@ -30,7 +29,6 @@ class Key(str, Enum):
     Y = 'y'
     Z = 'z'
 
-    # Números
     ZERO = '0'
     ONE = '1'
     TWO = '2'
@@ -42,27 +40,23 @@ class Key(str, Enum):
     EIGHT = '8'
     NINE = '9'
 
-    # Especiais
     ENTER = 'enter'
     ESC = 'esc'
     SPACE = 'space'
     TAB = 'tab'
     BACKSPACE = 'backspace'
 
-    # Modificadores
     SHIFT = 'shift'
     CTRL = 'ctrl'
     ALT = 'alt'
     ALT_LEFT = 'altleft'
     ALT_RIGHT = 'altright'
 
-    # Setas
     UP = 'up'
     DOWN = 'down'
     LEFT = 'left'
     RIGHT = 'right'
 
-    # Função
     F1 = 'f1'
     F2 = 'f2'
     F3 = 'f3'

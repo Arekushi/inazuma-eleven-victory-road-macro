@@ -1,6 +1,5 @@
 from .base import PipelineLogHandler
 from src.pipeline.enums import PipelineEventType
-from config import settings
 
 
 class PipelineEndLogHandler(PipelineLogHandler):

@@ -1,0 +1,112 @@
+"Focar na tela":
+    do [focus "INAZUMA ELEVEN: Victory Road"]
+    @delay 0.1s
+
+"Selecionar Modo Crônica":
+    do [press ENTER]
+    @delay 3s
+
+"Selecionar Rota Crônica":
+    do [press ENTER]
+    @delay 7s
+
+"Apertar ALT":
+    do [hold ALT 1s]
+    @delay 0.5s
+
+"Apertar Clube":
+    do [press ENTER]
+    @delay 0.5s
+
+"Descer até a opção (Animus)":
+    do [press DOWN]
+    @repeat 3
+    @delay 0.5s
+
+"Selecionar opção Animus":
+    do [press ENTER]
+    @delay 1.5s
+
+"Ir até o Animus":
+    do [goto_spirit]
+    @delay 0.5s
+
+"Selecionar Animus":
+    do [press ENTER]
+    @label start
+    @delay 1s
+
+"Invocar Jogador":
+    do [press ENTER]
+    @delay 1s
+
+"Mover para (sim)":
+    do [press LEFT]
+    @delay 0.5s
+
+"Confirmar (sim)":
+    do [press ENTER]
+    @delay 4s
+
+"Próximo":
+    do [press ENTER]
+    @delay 1.5s
+
+"Ir para outra aba":
+    do [press E]
+    @repeat 2
+    @delay 0.5s
+
+"Verificar passivas":
+    @timeout 3s
+    when [passives_are_valid] every 0.5s:
+        do [notify "Sucesso!" "O Animus foi encontrado!"]
+        do [stop]
+
+"Confirmar [01/02]":
+    do [press ENTER]
+    do [register_spirit_opened]
+    @delay 1.5s
+
+"Confirmar [02/02]":
+    do [press ENTER]
+    do [log_line_break]
+    @delay 1.5s
+
+"Verificar rota":
+    @timeout 1s
+    @delay 1.5s
+    @goto start
+    when [has_no_spirit_left] every 1s:
+        @goto reset
+
+"Voltar menu":
+    do [press ESC]
+    @label reset
+    @delay 1s
+    @repeat 2
+
+"Subir opção para Salvar":
+    do [press UP]
+    @delay 0.5s
+
+"Confirmar opção Salvar":
+    do [press ENTER]
+    @delay 1s
+
+"Descer para opção de voltar a Tela de Título":
+    do [press DOWN]
+    @repeat 2
+    @delay 0.5s
+
+"Selecionar opção para voltar a Tela de Título":
+    do [press ENTER]
+    @delay 0.5s
+
+"Mover para (sim)":
+    do [press LEFT]
+    @delay 0.5s
+
+"Confirmar para voltar a Tela de Título":
+    do [press ENTER]
+    @delay 5s

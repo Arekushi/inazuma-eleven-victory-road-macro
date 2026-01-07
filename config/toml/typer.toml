@@ -2,10 +2,11 @@
 help = 'Módulo que agrupa macros.'
 max_loops_help = 'Número máximo de loops. (default: ∞)'
 enable_log_help = 'Habilita o log. (default: false)'
+profile_name_help = 'Nome do profile criado, contém os macros e passive-criterias (default: shared)'
 
 [TYPER.CHRONICLE_MATCH]
 help = 'Executa o macro responsável por partidas no Modo Crônica.'
 
 [TYPER.OPENING_ANIMUS]
 help = 'Executa o macro responsável por abrir Animus de jogadores.'
-passive_criteria_path_help = 'Caminho direto ao arquivo .JSON que contém como será o critério das passivas dos Animus.'
+passive_criteria_name_help = 'Nome do arquivo .JSON que contém como será o critério das passivas dos Animus.'

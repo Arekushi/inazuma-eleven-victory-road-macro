@@ -1,0 +1,26 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Arekushi/inazuma-eleven-victory-road-macro/refs/heads/main/config/json/passive-criteria.schema.json",
+    "spirit": {
+        "name": "",
+        "type": "player",
+        "quantity": 100,
+        "rarity": "top",
+        "game": "IE1",
+        "down": 0,
+        "right": 0
+    },
+    "slots": {
+        "4": [
+            {
+                "id": 61,
+                "quality": "high"
+            }
+        ],
+        "5": [
+            {
+                "id": 61,
+                "quality": "high"
+            }
+        ]
+    }
+}
