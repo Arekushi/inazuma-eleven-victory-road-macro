@@ -3,15 +3,11 @@
     "title": "PassiveCriteria",
     "type": "object",
     "required": [
-        "language",
         "spirit",
         "slots"
     ],
     "additionalProperties": true,
     "properties": {
-        "language": {
-            "$ref": "#/$defs/language"
-        },
         "spirit": {
             "$ref": "#/$defs/desiredSpirit"
         },
@@ -84,13 +80,6 @@
                     "minimum": 0
                 }
             }
-        },
-        "language": {
-            "type": "string",
-            "enum": [
-                "pt-br",
-                "en"
-            ]
         },
         "playerType": {
             "type": "string",
