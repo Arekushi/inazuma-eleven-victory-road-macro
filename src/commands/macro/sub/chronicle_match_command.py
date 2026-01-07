@@ -70,7 +70,7 @@ def chronicle_match(
     if enable_log:
         logger = LoggerFactory.get_logger(
             config=LoggerConfig(
-                name='opening-animus-command',
+                name='chronicle_match_command',
                 log_filename=f'{profile.name.lower()}-{datetime.now().strftime("%Y-%m-%d-%H-%M-%S.%f")}'
             )
         )
