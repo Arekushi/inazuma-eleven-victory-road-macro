@@ -7,10 +7,8 @@ from src.macro.actions import (
     key_press,
     log_line_break,
     mouse_click,
-    register_spirit_opened,
     send_notification,
     stop_pipeline,
-    goto_spirit
 )
 
 
@@ -86,24 +84,8 @@ ACTION_REGISTRY: dict[str, CallableSpec] = {
         name='stop',
         factory=lambda: lambda ctx: stop_pipeline(),
     ),
-    'register_spirit_opened': CallableSpec(
-        name='register_spirit_opened',
-        factory=lambda: lambda ctx: register_spirit_opened(ctx),
-    ),
     'log_line_break': CallableSpec(
         name='log_line_break',
         factory=lambda: lambda ctx: log_line_break(ctx)
     ),
-    'goto_spirit': CallableSpec(
-        name='goto_spirit',
-        factory=lambda sleep = 0.5:
-            lambda ctx: goto_spirit(ctx, sleep),
-        arguments=[
-            ArgumentSpec(
-                name='sleep',
-                type=float,
-                optional=True
-            ),
-        ]
-    )
 }

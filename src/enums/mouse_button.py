@@ -7,3 +7,6 @@ class MouseButton(Enum):
     RIGHT = 'RIGHT'
     PRIMARY = 'PRIMARY'
     SECONDARY = 'SECONDARY'
+    
+    def __str__(self) -> str:
+        return self.value

@@ -69,3 +69,6 @@ class Key(str, Enum):
     F10 = 'f10'
     F11 = 'f11'
     F12 = 'f12'
+    
+    def __str__(self) -> str:
+        return self.value

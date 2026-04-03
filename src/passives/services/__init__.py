@@ -1,1 +1,0 @@
-from .passive_criteria_validator import validate_passive_criteria

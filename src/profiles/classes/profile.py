@@ -1,7 +1,7 @@
 from dataclasses import dataclass
-from typing import Any, Dict, Optional, TypedDict
+from typing import Dict, Optional, TypedDict
 
-from src.profiles.classes import Macro, PassiveCriteria
+from src.profiles.classes import Macro
 from src.enums import Language
 
 
@@ -10,7 +10,6 @@ class Profile:
     name: str
     language: Language
     macros: Optional[Dict[str, Macro]] = None
-    passive_criterias: Optional[Dict[str, PassiveCriteria]] = None
 
 
 class ProfileDict(TypedDict, total=False):

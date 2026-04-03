@@ -1,18 +1,13 @@
 from typing import Tuple
 from src.enums.language import Language
 from src.dsl.specs import CallableSpec, ArgumentSpec
+
 from src.macro.rules import (
-    has_no_spirit_left,
-    passives_are_valid,
     is_image_on_screen
 )
 
 
 RULE_REGISTRY: dict[str, CallableSpec] = {
-    'has_no_spirit_left': CallableSpec(
-        name='has_no_spirit_left',
-        factory=lambda: lambda ctx: has_no_spirit_left(ctx),
-    ),
     'is_image_on_screen': CallableSpec(
         name='is_image_on_screen',
         factory=lambda image_name, region=None, confidence=0.9, grayscale=True, language=None:
@@ -49,9 +44,5 @@ RULE_REGISTRY: dict[str, CallableSpec] = {
                 optional=True
             ),
         ]
-    ),
-    'passives_are_valid': CallableSpec(
-        name='passives_are_valid',
-        factory=lambda: lambda ctx: passives_are_valid(ctx),
     ),
 }

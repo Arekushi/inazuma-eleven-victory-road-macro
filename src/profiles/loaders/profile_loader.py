@@ -5,9 +5,8 @@ from config.paths import Paths
 
 from src.helpers.json import JsonFile
 from src.enums import Language
-from src.profiles.loaders import load_passive_criterias_from_profile
 from src.profiles.exceptions import ProfileNotFoundException
-from src.profiles.classes import PassiveCriteria, Profile, Macro
+from src.profiles.classes import Profile, Macro
 from src.helpers.fs.listing import list_files, list_dir_names
 
 
@@ -23,28 +22,17 @@ def _load_macros(profile_name: str) -> dict[str, Macro]:
     }
 
 
-def _load_passive_criterias(profile_name: str) -> dict[str, PassiveCriteria]:
-    criterias = load_passive_criterias_from_profile(profile_name)
-
-    return {
-        criteria.name: criteria
-        for criteria in criterias
-    }
-
-
 def _parse_profile(
     data: dict,
     profile_name: str
 ) -> Profile:
     language = Language(data.get('language', Language.EN))
     macros = _load_macros(profile_name)
-    passive_criterias = _load_passive_criterias(profile_name)
     
     return Profile(
         name=profile_name,
         language=language,
-        macros=macros,
-        passive_criterias=passive_criterias
+        macros=macros
     )
 
 
