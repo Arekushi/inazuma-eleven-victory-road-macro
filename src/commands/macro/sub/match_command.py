@@ -1,9 +1,11 @@
 import typer
+from pathlib import Path
 from datetime import datetime
 from typing import Optional
 from rich.console import Console
 from config import settings
 
+from config.paths import Paths
 from src.pipeline.observers.handlers import (
     PipelineStartLogHandler,
     StepEnterLogHandler,
@@ -12,24 +14,29 @@ from src.pipeline.observers.handlers import (
     StepTimeoutLogHandler
 )
 
-from src.profiles.classes import Profile
-from src.profiles.loaders import load_profile_by_name
-
-from src.commands.helpers import select_profile_name
+from src.commands.helpers import prompt_if_none, prompt_macro_name
+from src.enums.language import Language
 from src.logging import LoggerConfig, LoggerFactory
 from src.pipeline.observers import PipelineLogger
 from src.dsl.compiler import PipelineCompiler
 
 
+MACRO_SUB_FOLDER = 'match'
 console = Console()
-app = typer.Typer(help=settings.TYPER.CHRONICLE_MATCH.help)
+app = typer.Typer(help=settings.TYPER.MATCH.help)
 
-@app.command('chronicle-match', help=settings.TYPER.CHRONICLE_MATCH.help)
-def chronicle_match_command(
-    profile_name: str = typer.Option(
+@app.command('match', help=settings.TYPER.MATCH.help)
+def match_command(
+    macro_filename: str = typer.Option(
         None,
-        '--profile',
-        help=settings.TYPER.MACRO.profile_name_help
+        '--file',
+        help=settings.TYPER.MATCH.macro_file_help,
+        callback=prompt_if_none(prompt_macro_name, MACRO_SUB_FOLDER)
+    ),
+    language: Language = typer.Option(
+        Language.PT_BR,
+        '--language',
+        help=settings.TYPER.MACRO.language
     ),
     max_loops: Optional[int] = typer.Option(
         None,
@@ -42,36 +49,33 @@ def chronicle_match_command(
         help=settings.TYPER.MACRO.enable_log_help
     )
 ):
-    console.rule(settings.CLI.CHRONICLE_MATCH.rule)
+    console.rule(settings.CLI.MATCH.rule)
     
     try:
-        if profile_name is None:
-            profile_name = select_profile_name()
-
-        profile = load_profile_by_name(profile_name)
-        
-        chronicle_match(profile, max_loops, enable_log)
+        macro_path = Paths.macro(MACRO_SUB_FOLDER, macro_filename)
+        match(macro_path, language, max_loops, enable_log)
     except Exception:
-        console.print(settings.CLI.CHRONICLE_MATCH.failed)
+        console.print(settings.CLI.MATCH.failed)
         console.print_exception(show_locals=True)
 
 
-def chronicle_match(
-    profile: Profile,
+def match(
+    macro_path: Path,
+    language: Language,
     max_loops: Optional[int],
     enable_log: bool = True
 ):
-    pipeline = PipelineCompiler.compile_file(profile.macros['chronicle_match'].path)
+    pipeline = PipelineCompiler.compile_file(macro_path)
     pipeline.max_loops = max_loops
     pipeline.context.update({
-        'profile': profile
+        'language': language
     })
     
     if enable_log:
         logger = LoggerFactory.get_logger(
             config=LoggerConfig(
-                name='chronicle_match_command',
-                log_filename=f'{profile.name.lower()}-{datetime.now().strftime("%Y-%m-%d-%H-%M-%S.%f")}'
+                name=f'{macro_path.stem}_command',
+                log_filename=f'{datetime.now().strftime("%Y-%m-%d-%H-%M-%S.%f")}'
             )
         )
         

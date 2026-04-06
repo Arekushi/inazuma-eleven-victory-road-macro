@@ -1244,6 +1244,18 @@ files = [
 typing-extensions = ">=4.14.1"
 
 [[package]]
+name = "pydirectinput"
+version = "1.0.4"
+description = "Python mouse and keyboard input automation for Windows using Direct Input."
+optional = false
+python-versions = ">=3.4"
+groups = ["main"]
+files = [
+    {file = "PyDirectInput-1.0.4-py3-none-any.whl", hash = "sha256:238bbe97f505f9c8728a47ea6a787750dbe834ec1fb42b98b3d703d827eda83e"},
+    {file = "PyDirectInput-1.0.4.tar.gz", hash = "sha256:bebe65102c69208688402f9f4cbd2ae7afc174fd2123e156e178b1304e7f80a2"},
+]
+
+[[package]]
 name = "pygetwindow"
 version = "0.0.9"
 description = "A simple, cross-platform module for obtaining GUI information on application's windows."
@@ -2014,4 +2026,4 @@ testing = ["coverage[toml]", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.15"
-content-hash = "ab94c54ed0b3157716aac0cb97f9da4ed3a6fe99522de6eb882e69441e48ca8c"
+content-hash = "4382023e9770d0950aa7119236c87c4c79aaf8080d7268a9c3e40276401836e8"

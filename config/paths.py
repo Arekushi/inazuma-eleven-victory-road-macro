@@ -6,7 +6,7 @@ from src.enums import Language, FileExt
 class Paths:
     PROJECT_ROOT = Path(__file__).resolve().parent.parent
     ASSETS = PROJECT_ROOT / 'assets'
-    PROFILES = PROJECT_ROOT / 'profiles'
+    MACROS = PROJECT_ROOT / 'macros'
     TEMP = PROJECT_ROOT / 'temp'
 
     @staticmethod
@@ -19,17 +19,7 @@ class Paths:
     
     @staticmethod
     def macro(
-        profile_name: str,
+        sub_folder: str,
         file_name: str
     ) -> Path:
-        return Paths.PROFILES / profile_name / 'macros' / f'{file_name}.{FileExt.VML}'
-    
-    @staticmethod
-    def macros(
-        profile_name: str
-    ) -> Path:
-        return Paths.PROFILES / profile_name / 'macros'
-    
-    @staticmethod
-    def profile_file(profile_name: str) -> Path:
-        return Paths.PROFILES / profile_name / f'profile.{FileExt.JSON}'
+        return Paths.MACROS / sub_folder / f'{file_name}.{FileExt.VML}'

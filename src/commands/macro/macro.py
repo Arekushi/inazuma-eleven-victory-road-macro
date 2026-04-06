@@ -1,7 +1,7 @@
 import typer
 
 from config import settings
-from .sub.chronicle_match_command import chronicle_match_command
+from .sub.match_command import match_command
 
 
 app = typer.Typer(
@@ -9,6 +9,6 @@ app = typer.Typer(
 )
 
 app.command(
-    'chronicle-match',
-    help=settings.TYPER.CHRONICLE_MATCH.help
-)(chronicle_match_command)
+    'match',
+    help=settings.TYPER.MATCH.help
+)(match_command)

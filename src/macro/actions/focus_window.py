@@ -9,6 +9,7 @@ user32 = ctypes.windll.user32
 
 def focus_window(title_contains: str, wait_after=0.3) -> bool:
     windows = gw.getWindowsWithTitle(title_contains)
+    
     if not windows:
         return False
 
@@ -16,6 +17,9 @@ def focus_window(title_contains: str, wait_after=0.3) -> bool:
     hwnd = window._hWnd
 
     fg_hwnd = win32gui.GetForegroundWindow()
+    
+    if hwnd == fg_hwnd:
+        return True
 
     fg_thread, _ = win32process.GetWindowThreadProcessId(fg_hwnd)
     target_thread, _ = win32process.GetWindowThreadProcessId(hwnd)

@@ -1,4 +1,4 @@
-[CLI.CHRONICLE_MATCH]
+[CLI.MATCH]
 rule = ':new_moon: [b]Executando o macro...[/]'
 failed = ':x: A execução do macro [white on red] falhou... [/]'
 

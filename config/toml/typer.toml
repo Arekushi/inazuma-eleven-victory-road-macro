@@ -2,7 +2,8 @@
 help = 'Módulo que agrupa macros.'
 max_loops_help = 'Número máximo de loops. (default: ∞)'
 enable_log_help = 'Habilita o log. (default: false)'
-profile_name_help = 'Nome do profile criado, contém os macros e passive-criterias (default: shared)'
+language = 'Define a linguagem de execução. (default: pt-br)'
 
-[TYPER.CHRONICLE_MATCH]
-help = 'Executa o macro responsável por partidas no Modo Crônica.'
+[TYPER.MATCH]
+help = 'Executa o macro responsável por partidas.'
+macro_file_help = 'Define arquivo de macro a ser executado.'

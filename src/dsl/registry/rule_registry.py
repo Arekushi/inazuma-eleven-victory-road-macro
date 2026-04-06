@@ -13,7 +13,7 @@ RULE_REGISTRY: dict[str, CallableSpec] = {
         factory=lambda image_name, region=None, confidence=0.9, grayscale=True, language=None:
             lambda ctx: is_image_on_screen(
                 image_name=image_name,
-                language=language or ctx.get('profile').language,
+                language=language or ctx.get('language'),
                 region=region,
                 confidence=confidence,
                 grayscale=grayscale

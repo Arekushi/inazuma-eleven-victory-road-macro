@@ -1,1 +1,1 @@
-from .chronicle_match_command import chronicle_match, chronicle_match_command
+from .match_command import match, match_command
