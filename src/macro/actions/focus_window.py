@@ -2,10 +2,11 @@ import time
 import ctypes
 import pygetwindow as gw
 import win32gui
-import win32process
 import win32api
 
 user32 = ctypes.windll.user32
+
+import win32con
 
 def focus_window(title_contains: str, wait_after=0.3) -> bool:
     windows = gw.getWindowsWithTitle(title_contains)
@@ -13,30 +14,32 @@ def focus_window(title_contains: str, wait_after=0.3) -> bool:
     if not windows:
         return False
 
-    window = windows[0]
-    hwnd = window._hWnd
+    hwnd = windows[0]._hWnd
 
-    fg_hwnd = win32gui.GetForegroundWindow()
-    
-    if hwnd == fg_hwnd:
+    if win32gui.GetForegroundWindow() == hwnd:
         return True
 
-    fg_thread, _ = win32process.GetWindowThreadProcessId(fg_hwnd)
-    target_thread, _ = win32process.GetWindowThreadProcessId(hwnd)
-    current_thread = win32api.GetCurrentThreadId()
+    _release_mouse()
+    _clear_input_state()
 
-    user32.AttachThreadInput(fg_thread, current_thread, True)
-    user32.AttachThreadInput(target_thread, current_thread, True)
+    time.sleep(0.05)
 
     if win32gui.IsIconic(hwnd):
-        win32gui.ShowWindow(hwnd, 9)
+        win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
 
+    win32api.keybd_event(win32con.VK_MENU, 0, 0, 0)
     win32gui.SetForegroundWindow(hwnd)
-    win32gui.BringWindowToTop(hwnd)
-    win32gui.SetActiveWindow(hwnd)
-
-    user32.AttachThreadInput(fg_thread, current_thread, False)
-    user32.AttachThreadInput(target_thread, current_thread, False)
+    win32api.keybd_event(win32con.VK_MENU, 0, win32con.KEYEVENTF_KEYUP, 0)
 
     time.sleep(wait_after)
     return True
+
+
+def _clear_input_state():
+    for key in range(256):
+        win32api.GetAsyncKeyState(key)
+
+
+def _release_mouse():
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
+    win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTUP, 0, 0)
