@@ -3,7 +3,8 @@ from src.enums.language import Language
 from src.dsl.specs import CallableSpec, ArgumentSpec
 
 from src.macro.rules import (
-    is_image_on_screen
+    is_image_on_screen,
+    is_black_screen
 )
 
 
@@ -45,4 +46,8 @@ RULE_REGISTRY: dict[str, CallableSpec] = {
             ),
         ]
     ),
+    'is_black_screen': CallableSpec(
+        name='is_black_screen',
+        factory=lambda: is_black_screen
+    )
 }

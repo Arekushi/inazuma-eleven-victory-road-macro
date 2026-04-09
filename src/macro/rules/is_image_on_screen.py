@@ -18,12 +18,14 @@ def is_image_on_screen(
     image_path = str((Paths.match_assets(language) / f'{image_name}.{FileExt.PNG}').resolve())
     
     try:
-        return pyautogui.locateOnScreen(
+        result = pyautogui.locateOnScreen(
             image_path,
             confidence=confidence,
             region=region,
             grayscale=grayscale
-        ) is not None
+        )
+        
+        return result is not None
     except pyautogui.ImageNotFoundException:
         return False
     except Exception as e:

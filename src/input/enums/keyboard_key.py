@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Key(str, Enum):
+class KeyboardKey(str, Enum):
     A = 'a'
     B = 'b'
     C = 'c'

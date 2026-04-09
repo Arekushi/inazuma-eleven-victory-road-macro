@@ -1,1 +1,1 @@
-from .pipeline_logger import PipelineLogger
+from .logger.pipeline_logger import PipelineLogger

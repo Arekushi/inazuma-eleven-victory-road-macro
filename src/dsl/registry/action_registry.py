@@ -1,12 +1,11 @@
-from src.enums import Key, MouseButton
 from src.dsl.specs import CallableSpec, ArgumentSpec
+from src.application.enums import GameAction
 
 from src.macro.actions import (
     focus_window,
-    key_hold,
-    key_press,
+    hold,
+    press,
     log_line_break,
-    mouse_click,
     send_notification,
     stop_pipeline,
 )
@@ -25,45 +24,26 @@ ACTION_REGISTRY: dict[str, CallableSpec] = {
     ),
     'press': CallableSpec(
         name='press',
-        factory=lambda key: lambda ctx: key_press(key),
+        factory=lambda action: lambda ctx: press(ctx, action),
         arguments=[
             ArgumentSpec(
-                name='key',
-                type=Key
+                name='action',
+                type=GameAction
             )
         ]
     ),
     'hold': CallableSpec(
         name='hold',
-        factory=lambda key, seconds: lambda ctx: key_hold(key, seconds),
+        factory=lambda action, seconds: lambda ctx: hold(ctx, action, seconds),
         arguments=[
             ArgumentSpec(
-                name='key',
-                type=Key
+                name='action',
+                type=GameAction
             ),
             ArgumentSpec(
                 name='seconds',
                 type=float
             )
-        ]
-    ),
-    'click': CallableSpec(
-        name='click',
-        factory=lambda x, y, button=MouseButton.LEFT: lambda ctx: mouse_click(x, y, button),
-        arguments=[
-            ArgumentSpec(
-                name='x',
-                type=int
-            ),
-            ArgumentSpec(
-                name='y',
-                type=int
-            ),
-            ArgumentSpec(
-                name='button',
-                type=MouseButton,
-                optional=True
-            ),
         ]
     ),
     'notify': CallableSpec(

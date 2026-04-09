@@ -1,13 +1,13 @@
 "Focar na tela":
     do [focus "INAZUMA ELEVEN: Victory Road"]
-    @delay 0.1s
+    @delay 1s
 
 "Listar times":
-    do [press V]
+    do [press LIST_TEAMS]
     @delay 1s
 
 "Confirmar time":
-    do [press ENTER]
+    do [press CONFIRM]
     @delay 1.5s
 
 "Subir dificuldade":
@@ -16,11 +16,11 @@
     @repeat 2
 
 "Confirmar dificuldade":
-    do [press ENTER]
+    do [press CONFIRM]
     @delay 1.5s
 
 "Confirmar jogo":
-    do [press ENTER]
+    do [press CONFIRM]
     @delay 0.5s
     @repeat 3
 
@@ -28,14 +28,14 @@
     @delay 3.0s
     @timeout 10.0s
     when [is_image_on_screen start-validator (750, 900, 500, 150) 0.8] every 1.0s:
-        do [press ENTER]
+        do [press CONFIRM]
 
 "Confirmar formação":
-    do [press ENTER]
+    do [press CONFIRM_TEAM]
     @delay 1.5s
 
 "Pular introdução":
-    do [hold V 2.0s]
+    do [hold SKIP 2.0s]
     @delay 1.0s
     @repeat 2
 
@@ -43,46 +43,52 @@
     @delay 1.0s
 
 "Confirmar visualização da formação [01/02]":
-    do [press ENTER]
+    do [press CONFIRM]
     @delay 1.5s
 
 "Confirmar visualização da formação [02/02]":
-    do [press ENTER]
+    do [press CONFIRM]
     @delay 4.0s
 
 "Passe inicial":
-    do [click 10 10]
+    do [press KICK_OFF]
     @delay 1s
 
 "Iniciar Modo Comandante":
-    do [press U]
+    do [press COMMANDER_MODE]
     @delay 0.5s
 
 "Ativar Câmera Cinematográfica":
-    do [press C]
+    do [press C_CAMERA]
     @delay 0.5s
 
 "Verificar se o primeiro tempo acabou ou se será vitória por vantagem":
-    @delay 0.5s
-    @timeout 650
-    when [is_image_on_screen end-first-half-validator (150, 950, 600, 100) 0.8] every 5.0s:
-        do [press ENTER]
-    when [is_image_on_screen end-second-half-validator (1500, 900, 450, 200) 0.8] every 5.0s:
-        do [press ENTER]
-        @goto end
+    @delay 3.0s
+    @timeout 700
+    when [is_image_on_screen end-first-half-validator (150, 950, 600, 100) 0.8] every 3.0s:
+        @goto second_half
+    when [is_image_on_screen end-second-half-validator (1500, 900, 450, 200) 0.8] every 3.0s:
+        @goto end_second_half
 
-"Verificar se o segundo tempo acabou":
+"Confirmar time para segundo tempo":
     @delay 0.5s
-    @timeout 650
-    when [is_image_on_screen end-second-half-validator (1500, 900, 450, 200) 0.8] every 5.0s:
-        do [press ENTER]
-
-"Próximo":
-    do [press ENTER]
-    @label end
-    @delay 1.0s
+    @label second_half
+    do [press CONFIRM_TEAM]
     @repeat 2
 
+"Verificar se o segundo tempo acabou":
+    @delay 1s
+    @timeout 700
+    when [is_image_on_screen end-second-half-validator (1500, 900, 450, 200) 0.8] every 3.0s:
+        @goto end_second_half
+
+"Próximo":
+    do [press CONFIRM]
+    @label end_second_half
+    @delay 1.0s
+    when [is_black_screen] every 0.5s:
+        @goto finish
+
 "Finalizar":
-    do [press ENTER]
+    @label finish
     @delay 5.0s

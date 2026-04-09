@@ -2,7 +2,8 @@
 help = 'Módulo que agrupa macros.'
 max_loops_help = 'Número máximo de loops. (default: ∞)'
 enable_log_help = 'Habilita o log. (default: false)'
-language = 'Define a linguagem de execução. (default: pt-br)'
+language_help = 'Define a linguagem de execução. (default: pt-br)'
+input_mode_help = 'Define o tipo de input. [desktop | gamepad] (default: desktop)'
 
 [TYPER.MATCH]
 help = 'Executa o macro responsável por partidas.'

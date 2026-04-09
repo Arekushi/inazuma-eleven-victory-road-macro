@@ -1,0 +1,2 @@
+from .gamepad_action_map import GAMEPAD_ACTION_MAP
+from .desktop_action_map import DESKTOP_ACTION_MAP

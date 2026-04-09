@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class MouseButton(Enum):
+class MouseButton(str, Enum):
     LEFT = 'left'
     MIDDLE = 'middle'
     RIGHT = 'right'
