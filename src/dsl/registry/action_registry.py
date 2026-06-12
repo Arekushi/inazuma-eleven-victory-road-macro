@@ -6,7 +6,6 @@ from src.macro.actions import (
     hold,
     press,
     log_line_break,
-    send_notification,
     stop_pipeline,
 )
 
@@ -44,20 +43,6 @@ ACTION_REGISTRY: dict[str, CallableSpec] = {
                 name='seconds',
                 type=float
             )
-        ]
-    ),
-    'notify': CallableSpec(
-        name='notify',
-        factory=lambda title, msg: lambda ctx: send_notification(title, msg),
-        arguments=[
-            ArgumentSpec(
-                name='title',
-                type=str
-            ),
-            ArgumentSpec(
-                name='msg',
-                type=str
-            ),
         ]
     ),
     'stop': CallableSpec(
