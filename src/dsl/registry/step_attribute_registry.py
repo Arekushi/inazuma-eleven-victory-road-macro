@@ -20,5 +20,5 @@ STEP_ATTRIBUTE_REGISTRY: Dict[str, AttributeSpec] = {
     ),
     'label': AttributeSpec(
         name='label'
-    ),
+    )
 }

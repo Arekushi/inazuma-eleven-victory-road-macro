@@ -1,8 +1,6 @@
 from logging import Logger
 from typing import Any, Optional
 
-from src.logging import LoggerFactory
-
 
 class PipelineContext:
     def __init__(
@@ -11,7 +9,7 @@ class PipelineContext:
         logger: Optional[Logger] = None
     ):
         self._data = initial_data.copy() if initial_data else {}
-        self._logger = logger or LoggerFactory.get_logger(__name__)
+        self._logger = logger
 
     @property
     def logger(self) -> Logger:

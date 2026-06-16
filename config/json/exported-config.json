@@ -51,15 +51,7 @@
   },
   {
    "optionDest": "datas",
-   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/assets/pt-br/match/end-first-half-validator.png;assets/pt-br/match/."
-  },
-  {
-   "optionDest": "datas",
-   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/assets/pt-br/match/end-second-half-validator.png;assets/pt-br/match/."
-  },
-  {
-   "optionDest": "datas",
-   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/assets/pt-br/match/start-validator.png;assets/pt-br/match/."
+   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/assets/match/end-second-half-validator.png;assets/match/."
   },
   {
    "optionDest": "datas",
@@ -75,11 +67,7 @@
   },
   {
    "optionDest": "datas",
-   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/macros/match/chronicle_match.vml;macros/match/."
-  },
-  {
-   "optionDest": "datas",
-   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/macros/match/free_match.vml;macros/match/."
+   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/macros/match.vml;macros/."
   }
  ],
  "nonPyinstallerOptions": {

@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from src.enums import Language, FileExt
+from src.application.enums import FileExt
 
 
 class Paths:
@@ -8,18 +8,9 @@ class Paths:
     ASSETS = PROJECT_ROOT / 'assets'
     MACROS = PROJECT_ROOT / 'macros'
     TEMP = PROJECT_ROOT / 'temp'
-
-    @staticmethod
-    def assets_lang(lang: Language) -> Path:
-        return Paths.ASSETS / lang.value
-
-    @staticmethod
-    def match_assets(lang: Language) -> Path:
-        return Paths.assets_lang(lang) / 'match'
     
     @staticmethod
-    def macro(
-        sub_folder: str,
+    def macro_file(
         file_name: str
     ) -> Path:
-        return Paths.MACROS / sub_folder / f'{file_name}.{FileExt.VML}'
+        return Paths.MACROS / f'{file_name}.{FileExt.VML}'

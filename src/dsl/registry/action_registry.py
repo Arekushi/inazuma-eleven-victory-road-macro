@@ -1,3 +1,4 @@
+from config import settings
 from src.dsl.specs import CallableSpec, ArgumentSpec
 from src.application.enums import GameAction
 
@@ -5,21 +6,14 @@ from src.macro.actions import (
     focus_window,
     hold,
     press,
-    log_line_break,
-    stop_pipeline,
+    stop_pipeline
 )
 
 
 ACTION_REGISTRY: dict[str, CallableSpec] = {
-    'focus': CallableSpec(
+    'focus_window': CallableSpec(
         name='focus',
-        factory=lambda title: lambda ctx: focus_window(title),
-        arguments=[
-            ArgumentSpec(
-                name='title',
-                type=str
-            )
-        ]
+        factory=lambda: lambda ctx: focus_window(settings.APP.window_name),
     ),
     'press': CallableSpec(
         name='press',
@@ -48,9 +42,5 @@ ACTION_REGISTRY: dict[str, CallableSpec] = {
     'stop': CallableSpec(
         name='stop',
         factory=lambda: lambda ctx: stop_pipeline(),
-    ),
-    'log_line_break': CallableSpec(
-        name='log_line_break',
-        factory=lambda: lambda ctx: log_line_break(ctx)
     ),
 }

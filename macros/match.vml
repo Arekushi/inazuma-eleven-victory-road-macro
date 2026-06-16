@@ -1,0 +1,12 @@
+"Verify victory":
+    @timeout 900
+    @delay 1.0s
+    when [is_image_on_screen end-second-half-validator (1700, 925, 250, 150) RIGHT 0.8] every 3.0s:
+        @goto rematch
+
+"Rematch":
+    do [focus_window]
+    do [press CONFIRM]
+    @label rematch
+    @delay 1.0s
+    @repeat 5

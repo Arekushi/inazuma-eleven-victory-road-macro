@@ -28,5 +28,5 @@ class StepBuilder:
             delay_after=node.delay or 0.0,
             timeout=node.timeout or 30.0,
             repeat=node.repeat or 1,
-            goto=node.goto,
+            goto=node.goto
         )

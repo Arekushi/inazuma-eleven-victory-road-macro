@@ -1,10 +1,10 @@
 [TYPER.MACRO]
-help = 'Módulo que agrupa macros.'
-max_loops_help = 'Número máximo de loops. (default: ∞)'
-enable_log_help = 'Habilita o log. (default: false)'
-language_help = 'Define a linguagem de execução. (default: pt-br)'
-input_mode_help = 'Define o tipo de input. [desktop | gamepad] (default: desktop)'
+help = 'Module that groups macros.'
+max_loops_help = 'Maximum number of loops. (default: ∞)'
+enable_log_file_help = 'Enables logging in file. (default: false)'
+language_help = 'Sets the execution language.'
+input_mode_help = 'Defines the input type. [desktop | gamepad] (default: desktop)'
 
 [TYPER.MATCH]
-help = 'Executa o macro responsável por partidas.'
-macro_file_help = 'Define arquivo de macro a ser executado.'
+help = 'Runs the macro responsible for matches.'
+difficulty_help = 'Defines the difficulty level to be selected. (default: HERO)'

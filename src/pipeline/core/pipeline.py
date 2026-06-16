@@ -3,20 +3,25 @@ import random
 from logging import Logger
 from typing import Dict, List, Optional
 
+from src.pipeline.core import Step
 from src.pipeline.enums import PipelineEventType
 from src.pipeline.exceptions import StopPipeline
-from src.pipeline.classes import PipelineContext, StepNavigator, \
-    PipelineObserver, PipelineEvent, PipelineSnapshot
-from src.pipeline.core import Step
+from src.pipeline.classes import (
+    PipelineContext,
+    StepNavigator,
+    PipelineObserver,
+    PipelineEvent,
+    PipelineSnapshot
+)
 
 
 class Pipeline:
     def __init__(
         self,
         steps: List[Step],
-        logger: Optional[Logger] = None,
-        max_loops: Optional[int] = None,
-        context_data: Optional[dict] = None,
+        logger: Optional[Logger],
+        max_loops: Optional[int],
+        context_data: Optional[dict],
     ):
         self.steps = steps
         self.logger = logger
@@ -39,12 +44,8 @@ class Pipeline:
                 has_more_steps = self._tick()
 
                 if not has_more_steps:
-                    self.loop_count += 1
-
-                    if self.max_loops is not None and self.loop_count >= self.max_loops:
-                        break
-
-                    self.reset()
+                    self._increment()
+                
         except StopPipeline:
             pass
         finally:
@@ -131,6 +132,14 @@ class Pipeline:
         if step._start_time is None:
             step._start_time = time.time()
             self._emit(PipelineEventType.STEP_ENTER)
+    
+    def _increment(self):
+        self.loop_count += 1
+
+        if self.max_loops and self.loop_count >= self.max_loops:
+            raise StopPipeline()
+
+        self.reset()
 
     def _build_label_map(self) -> Dict[str, int]:
         label_map = {}

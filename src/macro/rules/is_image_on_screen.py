@@ -1,33 +1,32 @@
-import pyautogui
 from pathlib import Path
-from typing import Optional, Tuple
+
+from config import settings
+from typing import Optional
 from config.paths import Paths
-from src.enums import Language, FileExt
+from src.application.enums import FileExt
 
-
-Region = Tuple[int, int, int, int]
+from src.vision import exists
+from src.vision.dataclasses import Region
+from src.window import WindowContextResolver
 
 
 def is_image_on_screen(
     image_name: str,
-    language = Language.PT_BR,
-    confidence=0.9,
-    region: Optional[Region] = None,
-    grayscale: bool = True
+    region: Optional[Region],
+    confidence=0.9
 ) -> bool:
-    image_path = str((Paths.match_assets(language) / f'{image_name}.{FileExt.PNG}').resolve())
+    image_path = Path(Paths.ASSETS / f'{image_name}.{FileExt.PNG}').resolve()
+    window_ctx = WindowContextResolver.resolve(settings.APP.window_name)
     
     try:
-        result = pyautogui.locateOnScreen(
-            image_path,
-            confidence=confidence,
+        result = exists(
+            image_name=image_path,
             region=region,
-            grayscale=grayscale
+            window_ctx=window_ctx,
+            confidence=confidence,
         )
         
-        return result is not None
-    except pyautogui.ImageNotFoundException:
-        return False
+        return result
     except Exception as e:
         print(e)
         return False

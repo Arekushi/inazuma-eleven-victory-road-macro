@@ -8,7 +8,7 @@ class StepEnterLogHandler(PipelineLogHandler):
 
     def handle(self, logger, event):
         logger.info(
-            settings.CLI.PIPELINE.enter_step,
+            settings.CLI.PIPELINE.step_enter,
             extra={
                 'step_name': event.snapshot.current_step,
                 'loop_count': event.snapshot.loop_count + 1,

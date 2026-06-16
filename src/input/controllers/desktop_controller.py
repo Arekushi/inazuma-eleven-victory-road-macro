@@ -20,14 +20,3 @@ class DesktopController(PressCapability):
                 time.sleep(duration_seconds)
             finally:
                 pydirectinput.keyUp(binding.key.value)
-    
-    # def click(
-    #     self,
-    #     x: Optional[int] = None,
-    #     y: Optional[int] = None,
-    #     button: MouseButton = MouseButton.LEFT
-    # ):
-    #     if x is not None and y is not None:
-    #         pydirectinput.click(x=x, y=y, button=button.value)
-    #     else:
-    #         pydirectinput.click(button=button.value)
