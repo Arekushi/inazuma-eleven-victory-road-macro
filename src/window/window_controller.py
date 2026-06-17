@@ -1,45 +1,24 @@
 import time
-import win32gui
-import win32api
-import win32con
-import pygetwindow as gw
+import subprocess
+from src.window import WindowContextResolver
 
 
 class WindowController:
-    
-    @staticmethod
-    def focus_window(title_contains: str, wait_after: float = 0.3) -> bool:
-        windows = gw.getWindowsWithTitle(title_contains)
 
-        if not windows:
+    @staticmethod
+    def focus_window(title: str, wait_after: float = 0.3) -> bool:
+        window = WindowContextResolver.get_window_by_title(title)
+
+        if window is None:
             return False
 
-        hwnd = windows[0]._hWnd
+        if window.isMinimized:
+            window.restore()
 
-        if win32gui.GetForegroundWindow() == hwnd:
-            return True
-
-        WindowController._release_mouse()
-        WindowController._clear_input_state()
-
-        time.sleep(0.05)
-
-        if win32gui.IsIconic(hwnd):
-            win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
-
-        win32api.keybd_event(win32con.VK_MENU, 0, 0, 0)
-        win32gui.SetForegroundWindow(hwnd)
-        win32api.keybd_event(win32con.VK_MENU, 0, win32con.KEYEVENTF_KEYUP, 0)
-
+        try:
+            window.activate()
+        except Exception:
+            subprocess.run(['wmctrl', '-a', title])
+        
         time.sleep(wait_after)
         return True
-
-    @staticmethod
-    def _clear_input_state():
-        for key in range(256):
-            win32api.GetAsyncKeyState(key)
-
-    @staticmethod
-    def _release_mouse():
-        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
-        win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTUP, 0, 0)

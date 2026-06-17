@@ -1,10 +1,13 @@
 from datetime import datetime
 
-from src.input.mappings.input_providers import INPUT_PROVIDERS
+
 from src.dsl.compiler import PipelineCompiler
 from src.logging import LoggerFactory, LoggerConfig
+from src.input.providers import InputProviderFactory
+from src.input.controllers import InputController
 
 from config.paths import Paths
+from src.application import SystemInfo
 from src.application.match import MatchConfig
 from src.application.enums import PipelineContextKeys
 from src.pipeline.observers import PipelineLogger
@@ -47,10 +50,11 @@ class MatchPipeline:
 
     def _configure_context(self):
         ctx = self.pipeline.context
-
-        bundle = INPUT_PROVIDERS[self.config.input_mode]()
-        ctx.set(PipelineContextKeys.CONTROLLER, bundle.controller)
-        ctx.set(PipelineContextKeys.INPUT_RESOLVER, bundle.resolver)
+        
+        ctx.set(
+            PipelineContextKeys.CONTROLLER,
+            InputController(InputProviderFactory.create(SystemInfo.get_os(), self.config.input_mode))
+        )
 
     def _configure_observers(self):
         logger = self._get_logger()

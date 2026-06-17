@@ -1,2 +1,1 @@
-from .desktop_controller import DesktopController
-from .gamepad_controller import GamepadController
+from .input_controller import InputController

@@ -1,10 +1,10 @@
 import vgamepad as vg
 
-from src.input.classes.gamepad_input import GamepadInput
-from src.input.enums.gamepad_key import GamepadKey
+from src.input.dataclasses import GamepadInput
+from src.input.enums import GamepadKey
 
 
-GAMEPAD_KEY_MAP: dict[GamepadKey, GamepadInput] = {
+VGAMEPAD_KEY_MAP: dict[GamepadKey, GamepadInput] = {
     GamepadKey.A: GamepadInput(button=vg.XUSB_BUTTON.XUSB_GAMEPAD_A),
     GamepadKey.B: GamepadInput(button=vg.XUSB_BUTTON.XUSB_GAMEPAD_B),
     GamepadKey.X: GamepadInput(button=vg.XUSB_BUTTON.XUSB_GAMEPAD_X),

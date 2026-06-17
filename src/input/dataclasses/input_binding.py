@@ -9,10 +9,7 @@ from src.input.enums import (
 )
 
 
-InputKey = Union[KeyboardKey, GamepadKey, MouseButton]
-
-
 @dataclass
 class InputBinding:
     type: InputType
-    key: InputKey
+    key: Union[KeyboardKey, GamepadKey, MouseButton]

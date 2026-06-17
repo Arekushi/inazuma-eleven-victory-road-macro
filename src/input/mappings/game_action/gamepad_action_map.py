@@ -1,5 +1,5 @@
 from src.input.enums import InputType, GamepadKey
-from src.input.classes import InputBinding
+from src.input.dataclasses import InputBinding
 from src.application.enums import GameAction
 
 
