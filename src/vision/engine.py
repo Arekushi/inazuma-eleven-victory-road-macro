@@ -5,23 +5,22 @@ from src.vision import (
     load_template,
     scale_template,
     match,
-    RegionResolver
+    RegionTransformer
 )
 from src.vision.dataclasses import Region
-from src.window.dataclasses import WindowContext
+from src.window.dataclasses import WindowRect
 
 
 def exists(
     image_name: str,
     region: Optional[Region],
-    window_ctx: WindowContext,
+    window_rect: WindowRect,
     confidence: float = 0.9
 ) -> bool:
-    region_resolver = RegionResolver(window_ctx)
     template = load_template(image_name)
     template = scale_template(template)
     
-    region = region_resolver.resolve(region)
-    screenshot = capture_screenshot(region)
+    transformed_region = RegionTransformer.transform(region, window_rect)
+    screenshot = capture_screenshot(transformed_region)
     
     return match(screenshot, template, confidence).exists

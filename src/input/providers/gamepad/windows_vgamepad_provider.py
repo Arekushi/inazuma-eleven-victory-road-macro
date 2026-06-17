@@ -1,6 +1,6 @@
 import time
-import vgamepad as vg
 
+from src.application import SystemOSDetector
 from src.application.enums import SystemOS, GameAction
 from src.input.enums import InputType, GamepadKey, InputMode
 from src.input.mappings import VGAMEPAD_KEY_MAP, GAMEPAD_ACTION_MAP
@@ -10,6 +10,11 @@ from src.input.providers import BaseInputProvider, InputProviderFactory
 @InputProviderFactory.register(SystemOS.WINDOWS, InputMode.GAMEPAD)
 class WindowsVGamepadProvider(BaseInputProvider):
     def __init__(self):
+        if SystemOSDetector.detect() != SystemOS.WINDOWS:
+            raise RuntimeError()
+        
+        import vgamepad as vg
+        
         self.gamepad = vg.VX360Gamepad()
         self.action_map = GAMEPAD_ACTION_MAP
 

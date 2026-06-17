@@ -1,13 +1,14 @@
 import time
 import subprocess
-from src.window import WindowContextResolver
+
+from src.window.backends.linux_x11 import LinuxX11WindowFinder
 
 
-class WindowController:
+class LinuxX11WindowFocuser:
 
     @staticmethod
     def focus_window(title: str, wait_after: float = 0.3) -> bool:
-        window = WindowContextResolver.get_window_by_title(title)
+        window = LinuxX11WindowFinder.get_by_title(title)
 
         if window is None:
             return False

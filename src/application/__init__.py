@@ -1,1 +1,2 @@
-from .system_info import SystemInfo
+from .system_os_detector import SystemOSDetector
+from .windowing_system_detector import WindowingSystemDetector

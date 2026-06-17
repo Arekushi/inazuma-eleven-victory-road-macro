@@ -7,8 +7,8 @@ from src.input.providers import InputProviderFactory
 from src.input.controllers import InputController
 
 from config.paths import Paths
-from src.application import SystemInfo
-from src.application.match import MatchConfig
+from src.application import SystemOSDetector
+from src.application.match import MatchCommandConfig
 from src.application.enums import PipelineContextKeys
 from src.pipeline.observers import PipelineLogger
 from src.pipeline.observers.logger.handlers import (
@@ -23,8 +23,8 @@ from src.pipeline.observers.logger.handlers import (
 MATCH_MACRO_FILENAME = 'match'
 
 
-class MatchPipeline:
-    def __init__(self, config: MatchConfig):
+class MatchCommandPipeline:
+    def __init__(self, config: MatchCommandConfig):
         self.config = config
         self.pipeline = None
 
@@ -53,7 +53,7 @@ class MatchPipeline:
         
         ctx.set(
             PipelineContextKeys.CONTROLLER,
-            InputController(InputProviderFactory.create(SystemInfo.get_os(), self.config.input_mode))
+            InputController(InputProviderFactory.create(SystemOSDetector.detect(), self.config.input_mode))
         )
 
     def _configure_observers(self):

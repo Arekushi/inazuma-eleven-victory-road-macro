@@ -1,6 +1,6 @@
-import sys
 import time
 
+from src.application import SystemOSDetector
 from src.application.enums import SystemOS, GameAction
 from src.input.providers import BaseInputProvider, InputProviderFactory
 
@@ -13,7 +13,7 @@ class LinuxEvdevProvider(BaseInputProvider):
     def __init__(self):
         self.action_map = GAMEPAD_ACTION_MAP
         
-        if sys.platform != 'linux':
+        if SystemOSDetector.detect() != SystemOS.LINUX:
             raise RuntimeError()
 
         from src.input.mappings import EVDEV_KEY_MAP

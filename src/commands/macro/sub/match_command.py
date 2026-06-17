@@ -4,7 +4,7 @@ from rich.console import Console
 from config import settings
 
 from src.input.enums import InputMode
-from src.application.match import MatchConfig, MatchPipeline
+from src.application.match import MatchCommandConfig, MatchCommandPipeline
 
 
 console = Console()
@@ -32,7 +32,7 @@ def match_command(
     console.rule(settings.CLI.MATCH.rule)
     
     try:
-        config = MatchConfig(
+        config = MatchCommandConfig(
             input_mode=input_mode,
             max_loops=max_loops,
             enable_log_file=enable_log_file
@@ -43,5 +43,5 @@ def match_command(
         console.print_exception(show_locals=True)
 
 
-def match(config: MatchConfig):
-    MatchPipeline(config).build().run()
+def match(config: MatchCommandConfig):
+    MatchCommandPipeline(config).build().run()

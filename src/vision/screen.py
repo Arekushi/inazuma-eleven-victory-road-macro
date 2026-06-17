@@ -1,10 +1,10 @@
 from config import settings
-from src.window import WindowContextResolver
+from src.window.backends import WindowBackendResolver
 
 
 def get_screen_size():
-    ctx = WindowContextResolver.resolve(settings.APP.window_name)
-    return ctx.rect.width, ctx.rect.height
+    rect = WindowBackendResolver.resolve().get_window_rect(settings.APP.window_name)
+    return rect.width, rect.height
 
 
 def get_ui_scale():

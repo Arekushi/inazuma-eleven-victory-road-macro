@@ -1,2 +1,2 @@
-from .match_config import MatchConfig
-from .match_pipeline import MatchPipeline
+from .match_command_config import MatchCommandConfig
+from .match_command_pipeline import MatchCommandPipeline

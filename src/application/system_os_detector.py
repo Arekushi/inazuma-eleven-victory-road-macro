@@ -1,10 +1,12 @@
 import platform
+
 from src.application.enums import SystemOS
 
 
-class SystemInfo:
+class SystemOSDetector:
+
     @staticmethod
-    def get_os() -> SystemOS:
+    def detect() -> SystemOS:
         system = platform.system()
 
         if system == 'Windows':
@@ -13,6 +15,4 @@ class SystemInfo:
         if system == 'Linux':
             return SystemOS.LINUX
 
-        raise RuntimeError(
-            f'Unsupported operating system: {system}'
-        )
+        raise ValueError(f'Unsupported OS: {system}')
