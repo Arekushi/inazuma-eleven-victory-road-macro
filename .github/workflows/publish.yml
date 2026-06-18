@@ -1,0 +1,44 @@
+name: Release
+
+on:
+    push:
+        tags:
+            - "v*"
+
+permissions:
+    contents: write
+
+jobs:
+    release:
+        runs-on: windows-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-python@v5
+              with:
+                  python-version: "3.10"
+            
+            - name: Install Poetry
+              uses: snok/install-poetry@v1
+
+            - name: Install dependencies
+              run: poetry install --no-interaction
+
+            - name: Build executable
+              run: ./scripts/build.ps1
+              
+            - name: Extract version
+              shell: bash
+              run: |
+                echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+
+            - name: Create TUFUP bundle
+              run: |
+                poetry run tufup targets add "${{ steps.version.outputs.VERSION }}" output/ie-vr-macro repo/keys
+
+            - name: Publish Release
+              uses: softprops/action-gh-release@v2
+              with:
+                  files: |
+                      repository/targets/*
