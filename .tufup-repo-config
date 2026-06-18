@@ -1,0 +1,34 @@
+{
+    "app_name": "inazuma-eleven-victory-road-macro",
+    "app_version_attr": "6.0.0",
+    "binary_diff": null,
+    "encrypted_keys": [],
+    "expiration_days": {
+        "root": 3650,
+        "snapshot": 30,
+        "targets": 365,
+        "timestamp": 7
+    },
+    "key_map": {
+        "root": [
+            "root"
+        ],
+        "snapshot": [
+            "snapshot"
+        ],
+        "targets": [
+            "targets"
+        ],
+        "timestamp": [
+            "timestamp"
+        ]
+    },
+    "keys_dir": "repo/keys",
+    "repo_dir": "repo",
+    "thresholds": {
+        "root": 1,
+        "snapshot": 1,
+        "targets": 1,
+        "timestamp": 1
+    }
+}

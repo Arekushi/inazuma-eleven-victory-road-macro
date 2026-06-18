@@ -3,8 +3,12 @@ base_width = 1920
 base_height = 1080
 window_name = 'INAZUMA ELEVEN: Victory Road'
 
-
 [API]
 host = '127.0.0.1'
 port = 8989
 reload = true
+
+[GITHUB]
+app_version = '6.0.0'
+owner = 'Arekushi'
+repo = 'inazuma-eleven-victory-road-macro'

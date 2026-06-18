@@ -8,6 +8,8 @@ class Paths:
     ASSETS = PROJECT_ROOT / 'assets'
     MACROS = PROJECT_ROOT / 'macros'
     TEMP = PROJECT_ROOT / 'temp'
+    REPO = PROJECT_ROOT / 'repo'
+    METADATA = REPO / 'metadata'
     
     @staticmethod
     def macro_file(

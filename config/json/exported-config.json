@@ -18,6 +18,14 @@
    "value": true
   },
   {
+   "optionDest": "icon_file",
+   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/assets/ie-vr-macro-icon.ico"
+  },
+  {
+   "optionDest": "name",
+   "value": "ie-vr-macro"
+  },
+  {
    "optionDest": "clean_build",
    "value": false
   },
@@ -51,7 +59,7 @@
   },
   {
    "optionDest": "datas",
-   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/assets/match/end-second-half-validator.png;assets/match/."
+   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/assets/end-second-half-validator.png;assets/."
   },
   {
    "optionDest": "datas",
@@ -68,6 +76,10 @@
   {
    "optionDest": "datas",
    "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/macros/match.vml;macros/."
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/Workspaces/Python/vscode-projects/inazuma-eleven-victory-road-macro/repo/metadata;repo/metadata/."
   }
  ],
  "nonPyinstallerOptions": {
