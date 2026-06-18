@@ -1,9 +1,15 @@
 from pathlib import Path
+from string import Template
 from tufup.client import Client
+from rich.console import Console
 
 from config import settings, Paths
 from src.tufup import GithubRepository
 from src.tufup.dataclasses import UpdateInfo
+from src.helpers.fs import create_dir
+
+
+console = Console()
 
 
 class TufupUpdater:
@@ -40,7 +46,7 @@ class TufupUpdater:
 
         return self._client
 
-    def has_update(self) -> UpdateInfo | None:
+    def check_update(self) -> UpdateInfo | None:
         update = self.client.check_for_updates()
 
         if update is None:
@@ -51,7 +57,15 @@ class TufupUpdater:
         )
 
     def update(self):
-        if self.has_update():
+        update_info = self.check_update()
+        
+        if update_info:
+            console.print(
+                Template(settings.CLI.TUFUP.has_update)
+                    .safe_substitute({'version': update_info.version})
+            )
+            console.print(settings.CLI.TUFUP.please_confirm)
+            create_dir(Paths.TEMP)
             self.client.download_and_apply_update()
             return True
 

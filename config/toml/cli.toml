@@ -1,3 +1,7 @@
+[CLI.TUFUP]
+has_update = ':arrows_counterclockwise: An update is available: [white on blue b] Version $version [/]'
+please_confirm = ':pleading_face: To continue, please [b]type y[/] to confirm and then run the CLI again.'
+
 [CLI.MATCH]
 rule = ':new_moon: [b]Executing macro...[/]'
 failed = ':x: Macro execution [white on red] failed... [/]'

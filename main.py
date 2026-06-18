@@ -14,15 +14,11 @@ def main(
         False,
         '--no-update-check'
     ),
-):
+):    
     updater = TufupUpdater()
     
     if not no_update_check:
-        update = updater.has_update()
-
-        if update:
-            typer.echo(f'\nNew version: {update.version}')
-            updater.update()
+        updater.update()
 
 
 app.add_typer(macro_app, name='macro')

@@ -20,3 +20,7 @@ from .renaming import (
     rename_dir,
     rename_file
 )
+
+from .creating import (
+    create_dir
+)
