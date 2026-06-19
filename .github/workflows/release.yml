@@ -39,6 +39,16 @@ jobs:
                 echo "VERSION=$version" >> $env:GITHUB_OUTPUT
                 echo "Version: $version"
             
+            - name: Restore keys
+              shell: pwsh
+              run: |
+                [IO.File]::WriteAllBytes(
+                    "keys.zip",
+                    [Convert]::FromBase64String("${{ secrets.TUF_KEYS_ARCHIVE }}")
+                )
+
+                Expand-Archive keys.zip -DestinationPath .
+            
             - name: Install Poetry
               uses: abatilo/actions-poetry@v3
               with:
@@ -52,7 +62,7 @@ jobs:
 
             - name: Create TUFUP bundle
               run: |
-                poetry run tufup targets add "${{ steps.version.outputs.VERSION }}" dist/ie-vr-macro repo/keys
+                poetry run tufup targets add ${{ steps.version.outputs.VERSION }} dist/ie-vr-macro ./keys
 
             - name: Publish Release
               uses: softprops/action-gh-release@v2
