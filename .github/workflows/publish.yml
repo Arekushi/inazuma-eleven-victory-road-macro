@@ -36,7 +36,7 @@ jobs:
                 poetry config installer.parallel false
             
             - name: Install dependencies
-              run: poetry install --no-interaction --vvv
+              run: poetry install --no-interaction -vvv
 
             - name: Build executable
               run: ./scripts/build.ps1
