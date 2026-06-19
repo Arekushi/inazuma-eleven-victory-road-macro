@@ -47,7 +47,7 @@ jobs:
                     [Convert]::FromBase64String("${{ secrets.TUF_KEYS_ARCHIVE }}")
                 )
 
-                Expand-Archive keys.zip -DestinationPath .
+                Expand-Archive keys.zip -DestinationPath repo/keys
 
             - name: Debug extracted keys
               shell: pwsh
@@ -68,7 +68,7 @@ jobs:
 
             - name: Create TUFUP bundle
               run: |
-                poetry run tufup targets add ${{ steps.version.outputs.VERSION }} dist/ie-vr-macro keys
+                poetry run tufup targets add ${{ steps.version.outputs.VERSION }} dist/ie-vr-macro repo/keys
 
             - name: Publish Release
               uses: softprops/action-gh-release@v2
