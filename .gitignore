@@ -232,5 +232,4 @@ profiles/*
 !profiles/shared/**
 
 # Tufup
-keys
-targets
+repo
