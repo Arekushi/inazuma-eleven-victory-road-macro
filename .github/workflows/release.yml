@@ -65,6 +65,11 @@ jobs:
             - name: Build executable
               run: ./scripts/build.ps1
 
+            - name: Prepare repo structure
+              shell: pwsh
+              run: |
+                New-Item -ItemType Directory -Force repo/targets
+
             - name: Create TUFUP bundle
               run: |
                 poetry run tufup targets add ${{ steps.version.outputs.VERSION }} dist/ie-vr-macro repo/keys
