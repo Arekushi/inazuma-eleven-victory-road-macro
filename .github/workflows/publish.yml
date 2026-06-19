@@ -53,4 +53,5 @@ jobs:
               uses: softprops/action-gh-release@v2
               with:
                   files: |
-                      repository/targets/*
+                      repo/targets/*
+                      repo/metadata/*
