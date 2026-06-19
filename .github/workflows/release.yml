@@ -48,6 +48,12 @@ jobs:
                 )
 
                 Expand-Archive keys.zip -DestinationPath .
+
+            - name: Debug extracted keys
+              shell: pwsh
+              run: |
+                dir
+                dir keys
             
             - name: Install Poetry
               uses: abatilo/actions-poetry@v3
@@ -62,7 +68,7 @@ jobs:
 
             - name: Create TUFUP bundle
               run: |
-                poetry run tufup targets add ${{ steps.version.outputs.VERSION }} dist/ie-vr-macro ./keys
+                poetry run tufup targets add ${{ steps.version.outputs.VERSION }} dist/ie-vr-macro keys
 
             - name: Publish Release
               uses: softprops/action-gh-release@v2
