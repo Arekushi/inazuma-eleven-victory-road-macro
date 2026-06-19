@@ -10,4 +10,5 @@ poetry run pyinstaller `
   --add-data "config/toml/typer.toml;config/toml/." `
   --add-data "macros/match.vml;macros/." `
   --add-data "repo/metadata;repo/metadata/." `
+  --collect-binaries=vgamepad `
   main.py
