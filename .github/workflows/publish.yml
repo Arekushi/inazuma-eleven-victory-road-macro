@@ -1,6 +1,12 @@
 name: Release
 
 on:
+    workflow_dispatch:
+        inputs:
+            app_version:
+                description: "Application version"
+                required: true
+                default: "6.0.0"
     push:
         tags:
             - "v*"
@@ -21,17 +27,25 @@ jobs:
             
             - name: Install Poetry
               uses: snok/install-poetry@v1
+              with:
+                version: latest
+                virtualenvs-create: true
+                virtualenvs-in-project: true
 
             - name: Install dependencies
               run: poetry install --no-interaction
 
             - name: Build executable
               run: ./scripts/build.ps1
-              
-            - name: Extract version
+
+            - name: Determine version
+              id: version
               shell: bash
               run: |
-                echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+                poetry run tufup targets add \
+                "${{ steps.version.outputs.VERSION }}" \
+                output/ie-vr-macro \
+                repo/keys
 
             - name: Create TUFUP bundle
               run: |
