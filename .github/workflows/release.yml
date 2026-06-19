@@ -52,8 +52,7 @@ jobs:
             - name: Debug extracted keys
               shell: pwsh
               run: |
-                dir
-                dir keys
+                dir repo/keys
             
             - name: Install Poetry
               uses: abatilo/actions-poetry@v3
