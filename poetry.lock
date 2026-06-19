@@ -5544,18 +5544,6 @@ socks = ["pysocks (>=1.5.6,!=1.5.7,<2.0)"]
 zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 
 [[package]]
-name = "vgamepad"
-version = "0.1.0"
-description = "Virtual XBox360 and DualShock4 gamepads in python"
-optional = false
-python-versions = "*"
-groups = ["main"]
-markers = "sys_platform == \"win32\""
-files = [
-    {file = "vgamepad-0.1.0.tar.gz", hash = "sha256:57f6bd01aec0c172947517fb782d150ef9b285f7f4d524c317374fa5c24a89de"},
-]
-
-[[package]]
 name = "wcwidth"
 version = "0.2.14"
 description = "Measures the displayed width of unicode strings in a terminal"
@@ -5632,4 +5620,4 @@ testing = ["coverage[toml]", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.15"
-content-hash = "da6d94549306f49fc08ac4b282b8ffc7b0e977910e1683a4e9d445d10e5e2e7a"
+content-hash = "f0b2f7065691e706590f940ddf0d7bff24dffc02c3d92e756284a61c41b81bfc"
