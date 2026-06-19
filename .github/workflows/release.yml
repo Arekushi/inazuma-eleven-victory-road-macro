@@ -47,7 +47,7 @@ jobs:
                     [Convert]::FromBase64String("${{ secrets.TUF_KEYS_ARCHIVE }}")
                 )
 
-                Expand-Archive keys.zip -DestinationPath repo/keys
+                Expand-Archive keys.zip -DestinationPath repo
 
             - name: Debug extracted keys
               shell: pwsh
