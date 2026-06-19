@@ -21,7 +21,7 @@ class GithubRepository:
             f'https://api.github.com/repos/'
             f'{self.owner}/{self.repo}/releases/latest'
         )
-    
+
     @property
     def metadata_url(self):
         return self.get_latest_release().metadata_base_url
@@ -52,23 +52,17 @@ class GithubRepository:
         tag = release['tag_name']
         version = tag.removeprefix('v')
 
-        target_base_url = (
-            f"https://github.com/"
-            f"{self.owner}/"
-            f"{self.repo}/"
-            f"releases/download/"
-            f"{tag}"
-        )
-
-        metadata_base_url = (
-            f"https://raw.githubusercontent.com/"
-            f"{self.owner}/"
-            f"{self.repo}/main/repo/metadata"
+        base_url = (
+            f'https://github.com/'
+            f'{self.owner}/'
+            f'{self.repo}/'
+            f'releases/download/'
+            f'{tag}'
         )
 
         return ReleaseInfo(
             version=version,
             tag=tag,
-            metadata_base_url=metadata_base_url,
-            target_base_url=target_base_url,
+            metadata_base_url=base_url,
+            target_base_url=base_url,
         )
