@@ -2,27 +2,14 @@
  "signatures": [
   {
    "keyid": "decb5fae9eacba1ddbbd0ca978a44580b4a67b1523d575f1246cf3bc385588e4",
-   "sig": "e126318f5002dad14905f0e8f17d834101c1ce0005453e8ad11c87e6aefc1b076a3f2b2eb563c6893937343847dacab6faad181322d015b53f7060d4786ca50a"
+   "sig": "21d0d3396ea3691483d726ce93dcf27543bc45b72bcc7afc75120dad6698d4e1321100bad337415b401b29ad1e88f765641cbd49d4ab91fb107763c6ca0e0f08"
   }
  ],
  "signed": {
   "_type": "targets",
-  "expires": "2027-06-18T21:20:06Z",
+  "expires": "2027-06-19T01:35:16Z",
   "spec_version": "1.0.31",
-  "targets": {
-   "inazuma-eleven-victory-road-macro-6.0.0.tar.gz": {
-    "custom": {
-     "tufup": {
-      "required": false
-     },
-     "user": null
-    },
-    "hashes": {
-     "sha256": "78052a5145c692a1632e47d002618393667883651e0f1b5427bb989d1a09ee82"
-    },
-    "length": 75346278
-   }
-  },
-  "version": 10
+  "targets": {},
+  "version": 11
  }
 }
