@@ -82,4 +82,15 @@ jobs:
               with:
                   files: |
                       repo/targets/*
-                      repo/metadata/*
+
+            - name: Commit changes
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+                  git add repo/metadata
+
+                  if ! git diff --cached --quiet; then
+                    git commit -m "🔧 Renew TUF metadata"
+                    git push
+                  fi
