@@ -1,0 +1,79 @@
+name: Renew TUF metadata
+
+on:
+    schedule:
+        # Todo dia 1 do mês às 03:00 UTC
+        - cron: "0 3 1 * *"
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+jobs:
+    renew:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-python@v5
+              with:
+                  python-version: "3.10"
+
+            - name: Get version
+              shell: pwsh
+              id: version
+              run: |
+                if ("${{ github.event_name }}" -eq "push") {
+                # Triggered by tag push
+                $version = "${{ github.ref_name }}" -replace '^v', ''
+                } else {
+                # Triggered by workflow_dispatch
+                $version = "${{ inputs.app_version }}"
+                }
+                echo "VERSION=$version" >> $env:GITHUB_OUTPUT
+                echo "Version: $version"
+            
+            - name: Restore keys
+              shell: pwsh
+              run: |
+                [IO.File]::WriteAllBytes(
+                    "keys.zip",
+                    [Convert]::FromBase64String("${{ secrets.TUF_KEYS_ARCHIVE }}")
+                )
+
+                Expand-Archive keys.zip -DestinationPath repo
+
+            - name: Debug extracted keys
+              shell: pwsh
+              run: |
+                dir repo/keys
+            
+            - name: Install Poetry
+              uses: abatilo/actions-poetry@v3
+              with:
+                poetry-version: "2.1.3"
+            
+            - name: Install dependencies
+              run: poetry install --without gamepad --no-root --no-interaction
+            
+            - name: Sign Targets
+              run: poetry run tufup sign targets repo/keys -e 90
+
+            - name: Sign Snapshot
+              run: poetry run tufup sign snapshot repo/keys -e 30
+
+            - name: Sign Timestamp
+              run: poetry run tufup sign timestamp repo/keys -e 30
+
+            - name: Commit changes
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+                  git add repo/metadata
+
+                  if ! git diff --cached --quiet; then
+                    git commit -m "🔧 Renew TUF metadata"
+                    git push
+                  fi
