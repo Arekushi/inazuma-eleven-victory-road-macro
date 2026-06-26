@@ -61,6 +61,6 @@ jobs:
 
                 $changes = git diff --cached --name-only
                 if ($changes) {
-                    git commit -m "🔧 update tuf metadata"
+                    git commit -m "🔧 Update TUF metadata"
                     git push
                 }
