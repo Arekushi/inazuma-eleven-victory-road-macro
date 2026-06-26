@@ -67,8 +67,6 @@ class GithubRepository:
             f"main/"
             f"repo/metadata"
         )
-        
-        print(metadata_url)
 
         return ReleaseInfo(
             version=version,
