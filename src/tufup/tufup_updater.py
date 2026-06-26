@@ -42,6 +42,7 @@ class TufupUpdater:
                 metadata_dir=self.metadata_dir,
                 metadata_base_url=release.metadata_base_url,
                 target_base_url=release.target_base_url,
+                refresh_required=True
             )
 
         return self._client

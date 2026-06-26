@@ -52,17 +52,27 @@ class GithubRepository:
         tag = release['tag_name']
         version = tag.removeprefix('v')
 
-        base_url = (
+        target_url = (
             f'https://github.com/'
             f'{self.owner}/'
             f'{self.repo}/'
             f'releases/download/'
             f'{tag}'
         )
+        
+        metadata_url = (
+            f"https://raw.githubusercontent.com/"
+            f"{self.owner}/"
+            f"{self.repo}/"
+            f"main/"
+            f"repo/metadata"
+        )
+        
+        print(metadata_url)
 
         return ReleaseInfo(
             version=version,
             tag=tag,
-            metadata_base_url=base_url,
-            target_base_url=base_url,
+            metadata_base_url=metadata_url,
+            target_base_url=target_url,
         )
