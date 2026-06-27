@@ -30,12 +30,13 @@ jobs:
               id: version
               run: |
                 if ("${{ github.event_name }}" -eq "push") {
-                # Triggered by tag push
-                $version = "${{ github.ref_name }}" -replace '^v', ''
+                    # Triggered by tag push
+                    $version = "${{ github.ref_name }}" -replace '^v', ''
                 } else {
-                # Triggered by workflow_dispatch
-                $version = "${{ inputs.app_version }}"
+                    # Triggered by workflow_dispatch
+                    $version = "${{ inputs.app_version }}"
                 }
+                
                 echo "VERSION=$version" >> $env:GITHUB_OUTPUT
                 echo "Version: $version"
             
@@ -63,7 +64,7 @@ jobs:
               run: poetry install --without gamepad --no-root --no-interaction
             
             - name: Install local vgamepad
-              run: poetry run pip install vgamepad
+              run: poetry run pip install wheels/vgamepad-0.1.0-py3-none-any.whl
 
             - name: Build executable
               run: ./scripts/build.ps1
