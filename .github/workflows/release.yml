@@ -63,7 +63,7 @@ jobs:
               run: poetry install --without gamepad --no-root --no-interaction
             
             - name: Install local vgamepad
-              run: poetry run pip install wheels/vgamepad-0.1.0-py3-none-any.whl
+              run: poetry run pip install vgamepad
 
             - name: Build executable
               run: ./scripts/build.ps1
