@@ -3,6 +3,7 @@ import time
 from src.application import SystemOSDetector
 from src.application.enums import SystemOS, GameAction
 from src.input.providers import BaseInputProvider, InputProviderFactory
+from src.input.exceptions import InputTypeUnavailableError
 
 from src.input.enums import InputType, GamepadKey, InputMode
 from src.input.mappings import GAMEPAD_ACTION_MAP
@@ -16,11 +17,14 @@ class LinuxEvdevProvider(BaseInputProvider):
         if SystemOSDetector.detect() != SystemOS.LINUX:
             raise RuntimeError()
 
-        from src.input.mappings import EVDEV_KEY_MAP
-        from evdev import UInput, ecodes as e
-        
-        self.e = e
-        self.EVDEV_KEY_MAP = EVDEV_KEY_MAP
+        try:
+            from src.input.mappings.gamepads.evdev_map import EVDEV_KEY_MAP
+            from evdev import UInput, ecodes as e
+            
+            self.e = e
+            self.EVDEV_KEY_MAP = EVDEV_KEY_MAP
+        except Exception:
+            raise InputTypeUnavailableError()
         
         capabilities = {
             e.EV_KEY: [
